@@ -11,7 +11,9 @@ export class SignInComponent implements OnInit {
   // UI Stat
   uiState = {
     isLoading: false,
-    isSubmitting: false
+    isSubmitting: false,
+    isAlertVisible: false,
+    errorMessage: ''
   }
   // Forms
   signInFormGroup: FormGroup
@@ -19,7 +21,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.initeForm()
@@ -28,8 +30,7 @@ export class SignInComponent implements OnInit {
   // inite Form
   initeForm() {
     this.signInFormGroup = this.formBuilder.group({
-      username: [null, [Validators.required]],
-      // email: [null, [Validators.required, Validators.pattern(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
+      email: [null, [Validators.required, Validators.pattern(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
       password: [null, [Validators.required]]
     })
   }
@@ -42,8 +43,16 @@ export class SignInComponent implements OnInit {
       return
     }
     this.authService.signIn(this.signInFormGroup.value).subscribe(
-      { next: (res)=>{this.uiState.isLoading = false},
-      error: (error)=>{this.uiState.isLoading = false}
+      {
+        next: (res) => { this.uiState.isLoading = false },
+        error: (error) => {
+          this.uiState.isAlertVisible = true,
+          this.uiState.isLoading = false,
+          this.uiState.errorMessage = error.error.responseMessage
+          setTimeout(() => {
+            this.uiState.isAlertVisible = false
+          }, 2000);
+        }
       }
     )
   }

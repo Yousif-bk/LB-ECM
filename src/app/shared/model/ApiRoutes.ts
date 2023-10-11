@@ -1,6 +1,6 @@
 export const ApiRoutes = {
   Auth: {
-    signIn: 'auth/login',
+    signIn: 'api/user/login',
     signUp: 'account/create',
   },
 };

@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptors } from './shared/helper/interceptors/JwtInterceptors';
+import { SuperAdminListComponent } from './components/Requests/super-admin-list/super-admin-list.component';
+import { AdminListComponent } from './components/Requests/admin-list/admin-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SuperAdminListComponent,
+    AdminListComponent,
   ],
   imports: [
     BrowserModule,

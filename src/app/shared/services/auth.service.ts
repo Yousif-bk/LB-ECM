@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.post(this.apiUrl + ApiRoutes.Auth.signUp, signUpReq).pipe(
       tap((res: any) => {
         // Save access token on local storage
-        localStorage.setItem(LocallyStoredItemsKeys.JWT, res.access_token);
+        localStorage.setItem(LocallyStoredItemsKeys.JWT, res.token);
         // Set authenticated user flag
         this.setIsLoggedIn(true);
       })
@@ -34,7 +34,10 @@ export class AuthService {
         localStorage.setItem(LocallyStoredItemsKeys.JWT, res.token);
         // Set authenticated user flag
         this.setIsLoggedIn(true);
-        this.router.navigate([AppRoutes.Home.main])
+        const userRole = res.roles[0];
+        console.log(userRole, 'Roles');
+
+        this.redirectBasedOnRole(userRole);
       })
     );
   }
@@ -58,5 +61,17 @@ export class AuthService {
 
   getIsLoggedIn(): BehaviorSubject<boolean> {
     return this.isLoggedIn;
+  }
+  private redirectBasedOnRole(userRole: string): void {
+    if (userRole === 'User') {
+      this.router.navigate([AppRoutes.Request.User.main]);
+    } else if (userRole === 'admin') {
+      this.router.navigate([AppRoutes.Request.Admin.main]);
+    } else if (userRole === 'superadmin') {
+      this.router.navigate([AppRoutes.Request.SuperAdmin.main]);
+    }
+    else {
+      console.log('Unknown user role:', userRole);
+    }
   }
 }

@@ -15,11 +15,13 @@
         <div class="card-body">
           <!-- Form -->
           <div class="text-center">
+            <div *ngIf="uiState.isAlertVisible" class="alert alert-danger" role="alert">
+              {{this.uiState.errorMessage}}
+            </div>
             <div class="mb-5">
               <h1 class="display-5">Sign in</h1>
               <p>Don't have an account yet? <a class="link" [routerLink]="'/auth/sign-up'">Sign up here</a></p>
             </div>
-
             <span class="divider-center text-muted mb-4">OR</span>
           </div>
           <form [formGroup]="signInFormGroup">
@@ -27,16 +29,16 @@
             <!-- Form -->
             <div class="mb-4">
               <label class="form-label" for="signupSrEmail">Your email</label>
-              <input type="email" formControlName="username" class="form-control form-control-lg"
+              <input type="email" formControlName="email" class="form-control form-control-lg"
                 placeholder="Markwilliams@site.com">
               <div class="v-message" *ngIf="(uiState.isSubmitting && signInFormGroup.get('email')?.hasError('required')
                 || signInFormGroup.get('email')?.touched && signInFormGroup.get('email')?.hasError('required'))">
                 <span> Email is <strong>required</strong></span>
               </div>
-              <!-- <span *ngIf="uiState.isSubmitting && signInFormGroup.get('email')?.hasError('pattern')  ||
+              <span *ngIf="uiState.isSubmitting && signInFormGroup.get('email')?.hasError('pattern')  ||
                  signInFormGroup.get('email')?.touched && signInFormGroup.get('email')?.hasError('pattern') ">
                 <span class="v-message">Please enter a valid <strong>email address</strong></span>
-              </span> -->
+              </span>
             </div>
             <!-- End Form -->
 

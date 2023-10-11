@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand">WeCare</a>
+    <a class="navbar-brand"><img width="40px" height="5%" src="../../../../assets/svg/logo-new.svg" alt=""></a>
 
     <button (click)="uiState.isNavbarCollapsed = !uiState.isNavbarCollapsed" class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -12,10 +12,6 @@
         <li class="nav-item">
           <a class="nav-link active"
           [class.active]="uiState.activeItem == 'home'" (click)="onSelected('home')">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-          [class.active]="uiState.activeItem == 'Link'" (click)="onSelected('Link')">Link</a>
         </li>
       </ul>
       <span (click)="logout()">Tettt</span>

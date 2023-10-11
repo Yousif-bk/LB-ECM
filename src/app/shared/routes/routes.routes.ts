@@ -1,3 +1,4 @@
+import { RequestsModule } from './../../components/Requests/requests.module';
 import { LandingComponent } from './../../components/home/landing/landing.component';
 import { Routes } from '@angular/router';
 import { AppRoutes } from '../model/AppRoutes';
@@ -20,6 +21,11 @@ export const routes: Routes = [
     path: AppRoutes.Home.main,
     canActivate:[AuthGuard],
     loadComponent: () => import('../../components/home/landing/landing.component').then(m => m.LandingComponent)
+  },
+  {
+    path: AppRoutes.Request.main,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('../../components/Requests/requests.module').then(m => m.RequestsModule)
   },
   { path: '**', component: PathNotFoundComponent },
 ]
