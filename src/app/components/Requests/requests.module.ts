@@ -5,6 +5,7 @@ import { requestsRoutes } from './requests.routes';
 import { SuperAdminListComponent } from './super-admin-list/super-admin-list.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { CreatesRequestComponent } from './creates-request/creates-request.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,6 +17,8 @@ import { CreatesRequestComponent } from './creates-request/creates-request.compo
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(requestsRoutes)
   ]
 })

@@ -7,12 +7,14 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AppRoutes } from '../model/AppRoutes';
 import { ApiRoutes } from '../model/ApiRoutes';
+import { User } from '../model/User ';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
   isLoggedIn = new BehaviorSubject<boolean>(this.isTokenAvailable());
+  userSubject = new BehaviorSubject<User | null>(null);
   constructor(private http: HttpClient, private router: Router) { }
 
 
@@ -35,7 +37,21 @@ export class AuthService {
         // Set authenticated user flag
         this.setIsLoggedIn(true);
         const userRole = res.roles[0];
-        console.log(userRole, 'Roles');
+
+        const email = res.email;
+        const username = res.username;
+        const userId = res.userId;
+
+        // Create a User object
+        const user: User = {
+          email: email,
+          username: username,
+          userId: userId,
+          role: userRole
+        };
+
+        // Send the user data to the BehaviorSubject in AuthService
+        this.userSubject.next(user);
 
         this.redirectBasedOnRole(userRole);
       })

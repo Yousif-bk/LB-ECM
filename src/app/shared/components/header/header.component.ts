@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AppRoutes } from '../../model/AppRoutes';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,13 @@ import { AppRoutes } from '../../model/AppRoutes';
 })
 export class HeaderComponent implements OnInit {
 
+
+  email: string | null
+  username: string
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ){}
 
   uiState = {
@@ -22,9 +28,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getScreenSize()
+    this.userSubject();
   }
 
-
+  userSubject() {
+    this.authService.userSubject.subscribe(user => {
+      this.email = user!.email ?? null;
+      this.username = user!.username ?? "";
+    });
+  }
   // Listen for window size changes
   @HostListener("window:resize", ["$event"])
   getScreenSize(event?: any): void {

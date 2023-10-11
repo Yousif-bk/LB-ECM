@@ -1,1 +1,50 @@
-<p>admin-list works!</p>
+<div class="tabel-header py-3">
+  <div class="mb-2 mb-md-0">
+    <h4>Admin Approval</h4>
+  </div>
+  <div class="d-grid d-sm-flex gap-2">
+  </div>
+</div>
+
+<!-- Table -->
+<table class='table w-100 mb-4 main-table '>
+  <thead>
+    <th>CustomerName</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>EID</th>
+    <th>TradeLicense</th>
+    <th>AuthorisedPerson</th>
+    <th>CampaignContent</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of requestlist">
+      <td>
+        <div>{{item.customerName}}</div>
+      </td>
+      <td>
+        <div>{{item.mobile}}</div>
+      </td>
+      <td>
+        <div>{{item.email}}</div>
+      </td>
+      <td>
+        <div>{{item.eid}}</div>
+      </td>
+      <td>
+        <div>{{item.tradeLicense}}</div>
+      </td>
+      <td>
+        <div>{{item.authorisedPerson}}</div>
+      </td>
+      <td>
+        <div>{{item.campaignContent}}</div>
+      </td>
+      <td>
+        <span (click)="approve(1, item.requestId)"><i style="color: green; cursor: pointer;" class="bi bi-check2-square p-3"></i></span>
+        <span (click)="reject(3, item.requestId)"><i style="color: red; cursor: pointer;" class="bi bi-x-lg"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
