@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand">WeCare</a>
+
+    <button (click)="uiState.isNavbarCollapsed = !uiState.isNavbarCollapsed" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngClass]="(uiState.isOnMidScreen && uiState.isNavbarCollapsed) ? 'nav-collapsed':'nav-uncollapsed'" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active"
+          [class.active]="uiState.activeItem == 'home'" (click)="onSelected('home')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+          [class.active]="uiState.activeItem == 'Link'" (click)="onSelected('Link')">Link</a>
+        </li>
+      </ul>
+      <span (click)="logout()">Tettt</span>
+      <div class="d-flex image">
+        <div class="avatar avatar-sm avatar-circle">
+          <img class="avatar-img" src="../../../../assets/images/img6.jpg" alt="">
+          <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+        </div>
+          <!-- Start Mega-Menu -->
+          <div class="mega-menu">
+            <div class="dropdown-item-text">
+              <div class="d-flex align-items-center">
+                <div class="avatar avatar-sm avatar-circle">
+                  <img class="avatar-img" src="../../../../assets/images/img6.jpg" alt="">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h6>Mark Williams</h6>
+                  <div class="card-text text-body">mark@site.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item"><i class="bi bi-gear"></i><span class="menu-item">Settings</span> </a>
+              <a class="dropdown-item" (click)="logout()"><i class="bi bi-box-arrow-left"></i><span class="menu-item">Logout</span></a>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+  <!-- <div class="menu-container">
+    <div class="menu-icon">
+      <div class="line"></div>
+      <div class="line2"></div>
+      <div class="line"></div>
+
+      <div class="menu-list">
+        <nav id="menu-nav">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div> -->

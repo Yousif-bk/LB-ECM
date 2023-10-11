@@ -1,0 +1,216 @@
+.container-fluid {
+  padding-left: 4rem 2rem;
+  padding-right: 4rem 2rem;
+}
+
+.content {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+// Card
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: .0625rem solid rgba(231, 234, 243, .7);
+  border-radius: .75rem
+}
+
+.card-header {
+  padding: 1.3125rem 1.3125rem;
+  margin-bottom: 0;
+  background-color: transparent;
+  border-bottom: .0625rem solid rgba(231, 234, 243, .7)
+}
+
+.card-header-title {
+  margin-bottom: 0
+}
+
+.card-header-title+.card-text {
+  margin-top: .25rem
+}
+
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.3125rem 1.3125rem
+}
+// End Card
+
+// Form Control
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .6125rem 1rem;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1e2022;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: .0625rem solid rgba(231, 234, 243, .7);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .3125rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.form-control:focus {
+  color: #1e2022;
+  background-color: #fff;
+  outline: 0;
+  box-shadow: 0 0 1rem 0 rgba(218, 220, 223, 0.25)
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #377dff;
+  border-color: #377dff
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #2f6ad9;
+  border-color: #2c64cc
+}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
+  color: #fff;
+  background-color: #2f6ad9;
+  border-color: #2c64cc;
+  box-shadow: 0 0 0 0 rgba(85, 145, 255, .5)
+}
+
+.display-5 {
+  font-size: calc(1.275rem + .3vw);
+  font-weight: 600;
+  line-height: 1.2
+}
+
+.link {
+  text-decoration: none;
+}
+
+.bg-dark {
+  background-color: #132144 !important;
+}
+
+// Button
+.btn-ghost-light {
+  color: #f9fafc;
+  background-color: transparent;
+}
+
+.btn-ghost-danger {
+  color: #ed4c78;
+  background-color: transparent;
+}
+
+.btn-white {
+  background-color: #fff;
+  border-color: rgba(231, 234, 243, .7);
+}
+
+.btn-white:hover {
+  color: #1366ff;
+  box-shadow: 0 3px 6px -2px rgb(140 152 164 / 25%);
+}
+
+// Alert
+.alert {
+  transition: all 1s ease 5s;
+}
+
+
+// Table
+.thead-light {
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.thead-light th {
+  background-color: #f8fafd
+}
+
+.table-thead-bordered {
+  border-top: .0625rem solid rgba(231, 234, 243, .7)
+}
+
+.table-nowrap td,
+.table-nowrap th {
+  white-space: nowrap
+}
+
+.main-table thead {
+  background-color: #e9ecef
+}
+
+.main-table thead th {
+  border: 0;
+  padding: 10px;
+}
+
+.main-table thead th:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.main-table thead th:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.main-table tbody tr {
+  background-color: #fff;
+  padding: 5px 0;
+}
+
+.main-table tbody td {
+  vertical-align: middle;
+}
+
+.main-table tbody td:not(:last-child) .table_cell {
+  border-right: 1px solid #757575;
+}
+
+.main-table tbody td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 6px;
+}
+
+.main-table tbody td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 6px;
+}
+
+// End Table
+@keyframes alerttt {
+  from {
+    display: block;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes alerttt {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}

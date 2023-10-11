@@ -1,0 +1,102 @@
+<div class="content container-fluid">
+
+  <div class="d-flex justify-content-center">
+
+    <div class="col-lg-8">
+      <div class="card shadow-sm animated flipInX delay-02">
+        <div class="card-header">
+          <div class="card-header-title">Product information</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Tes</label>
+              <div class="mb-4">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label>Tes</label>
+              <div class="mb-4">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="mb-4">
+              <input type="text" class="form-control">
+            </div>
+            <div class="d-flex justify-content-end gap-3">
+              <button type="button" class="btn btn-white">Save</button>
+              <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="tabel-header py-3">
+    <div class="mb-2 mb-md-0">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+    <div class="d-grid d-sm-flex gap-2">
+      <button type="button" class="btn btn-primary">
+        <i class="bi bi-plus-circle-fill"></i></button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table class='table w-100 mb-4 main-table '>
+    <thead>
+      <th>Date</th>
+      <th>Medication</th>
+      <th>Indication</th>
+      <th>Provider</th>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <div class='d-flex align-items-center table_cell'>
+            <div class='pl-3'>
+              <p class='mb-0 font-bold'>1 MAR, 2022</p>
+              <p class='mb-0'>12:01 PM</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class='table_cell'>Crystal Solution 500ml</div>
+        </td>
+        <td>
+          <div class='table_cell'>Wether, Amalia</div>
+        </td>
+        <td>
+          <div class='table_cell'>Take daily combination 1-0-0 (Topical)</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class='d-flex align-items-center table_cell'>
+            <div class='pl-3'>
+              <p class='mb-0 font-bold'>1 MAR, 2022</p>
+              <p class='mb-0'>12:01 PM</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class='table_cell'>Crystal Solution 500ml</div>
+        </td>
+        <td>
+          <div class='table_cell'>Wether, Amalia</div>
+        </td>
+        <td>
+          <div class='table_cell'>Take daily combination 1-0-0 (Topical)</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <app-loader></app-loader> -->
+  <!-- End Table -->
+
+  <app-message-alert [messageAlertInfo]="messageAlertInfo"></app-message-alert>
