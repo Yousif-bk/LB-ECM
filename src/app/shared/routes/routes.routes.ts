@@ -14,7 +14,7 @@ export const routes: Routes = [
   },
   {
     path: AppRoutes.Auth.main,
-    // canActivate: [UnauthGuard],
+    canActivate: [UnauthGuard],
     loadChildren: () => import('../../components/auth/auth.module').then(m => m.AuthModule)
   },
   {

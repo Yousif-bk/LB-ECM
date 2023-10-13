@@ -9,5 +9,8 @@ export const ApiRoutes = {
     getSuperAdminRequest: 'api/request/superAdminList',
     adminApporvalRequest: 'api/approval/admin',
     superAdminApporvalRequest: 'api/approval/superAdmin',
-  }
+  },
+  Location: {
+    userLocation: 'api/location/userLocation',
+  },
 };

@@ -15,23 +15,24 @@ export class CreatesRequestComponent {
     private formBuilder: FormBuilder) { }
 
   emirates = [
-    { value: 'emirates1', label: 'DXB' },
-    { value: 'emirates2', label: 'AUH' },
-    { value: 'emirates3', label: 'SHJ' }
+    { value: 'DXB', label: 'DXB' },
+    { value: 'AUH', label: 'AUH' },
+    { value: 'SHJ', label: 'SHJ' }
   ]
   areas = [
-    { value: 'area1', label: 'Area 1', emirate: 'emirates1' },
-    { value: 'area2', label: 'Area 2', emirate: 'emirates1' },
-    { value: 'area3', label: 'Area 3', emirate: 'emirates2' },
-    { value: 'area4', label: 'Area 4', emirate: 'emirates2' },
-    { value: 'area5', label: 'Area 5', emirate: 'emirates3' }
+    { value: 'dubai marina', label: 'Dubai Marina', emirate: 'DXB' },
+    { value: 'business bay', label: 'Business Bay', emirate: 'DXB' },
+    { value: 'deira', label: 'Deira', emirate: 'DXB' },
+    { value: 'yasIsland', label: 'Yas Island', emirate: 'AUH' },
+    { value: 'al reef', label: 'Al Reef', emirate: 'AUH' },
+    { value: 'al mushrif', label: 'Al Mushrif', emirate: 'AUH' },
+    { value: 'al falaj', label: 'Al Falaj', emirate: 'SHJ' },
+    { value: 'abu shagara ', label: 'Abu Shagara ', emirate: 'SHJ' },
+    { value: 'alnahd', label: 'Alnahda', emirate: 'SHJ' }
   ];
+
   selectedEmirate: string;
   filteredAreas: any[];
-
-  onEmirateChange() {
-    this.filteredAreas = this.areas.filter(area => area.emirate === this.selectedEmirate);
-  }
 
   uiState = {
     isLoading: false,
@@ -49,17 +50,17 @@ export class CreatesRequestComponent {
 
   ngOnInit(): void {
     this.initeForm(),
-    this.getUserId();
-    console.log(this.uiState.isDisabled);
-
+    this.getUserInfo();
   }
 
 
-  getUserId() {
+
+  getUserInfo() {
     const userJson = localStorage.getItem(LocallyStoredItemsKeys.User)
     if (userJson !== null) {
       const user = JSON.parse(userJson);
       this.createRequestForm.get('userId')?.setValue(user?.userId)
+      this.locationtForm.get('userId')?.setValue(user?.userId)
       this.createRequestForm.get('mobile')?.setValue(user?.phoneNumber)
       this.createRequestForm.get('customerName')?.setValue(user?.fullName)
       this.createRequestForm.get('email')?.setValue(user?.email)
@@ -79,10 +80,22 @@ export class CreatesRequestComponent {
     })
 
     this.locationtForm = this.formBuilder.group({
-      emirates: [null, Validators.required],
+      userId: ['', Validators.required],
+      emirate: [null, Validators.required],
       area: [null, Validators.required],
     })
+
+    this.locationtForm.get('emirate')?.valueChanges.subscribe((selectedEmirate) => {
+      this.updateAreas(selectedEmirate);
+    });
   }
+
+
+  updateAreas(selectedEmirate: string) {
+     this.filteredAreas = this.areas.filter((area) => area.emirate === selectedEmirate);
+    this.createRequestForm.get('area')?.setValue('');
+  }
+
 
   createRequest() {
     this.uiState.isSubmitting = true
@@ -121,8 +134,11 @@ export class CreatesRequestComponent {
     }
   }
 
-  locationRequest(){
+  locationRequest() {
     this.uiState.isFormVisual = true
+    this.appService.addUserLocation(this.locationtForm.value).subscribe(response=> {
+      console.log(response);
+    })
   }
 
 

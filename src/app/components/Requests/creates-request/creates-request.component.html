@@ -10,13 +10,14 @@
           <div *ngIf="uiState.isSuccess" class="alert alert-success" role="alert">
             Request Completed Successfully"
           </div>
+
           <form *ngIf="!uiState.isFormVisual" [formGroup]="locationtForm" (ngSubmit)="locationRequest()">
             <div class="row">
 
               <div class="col-sm-6">
                 <label>Select Emirates</label>
                 <div class="mb-4">
-                  <select class="form-control">
+                  <select class="form-control" formControlName="emirate">
                     <option value="" disabled>Select an Emirates</option>
                     <option *ngFor="let emirate of emirates" [value]="emirate.value">{{ emirate.label }}</option>
                   </select>
@@ -32,8 +33,6 @@
                   </select>
                 </div>
               </div>
-
-
               <div class="d-flex justify-content-end gap-3">
                 <button type="submit" class="btn btn-primary">
                   Send

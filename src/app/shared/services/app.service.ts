@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AdminApproval } from '../model/AdminApproval';
 import { SuperAdminApproval } from '../model/SuperAdminApproval';
+import { ILocation } from '../model/ILocation';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class AppService {
   }
   superAdminRejectRequest(superAdminApproval: SuperAdminApproval): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.Request.superAdminApporvalRequest, superAdminApproval);
+  }
+
+  addUserLocation(userLocation: ILocation): Observable<any> {
+    return this.http.post(this.apiUrl + ApiRoutes.Location.userLocation, userLocation);
   }
 }
