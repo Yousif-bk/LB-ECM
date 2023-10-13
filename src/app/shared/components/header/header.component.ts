@@ -1,7 +1,9 @@
+import { User } from './../../model/User ';
 import { Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AppRoutes } from '../../model/AppRoutes';
 import { AuthService } from '../../services/auth.service';
+import { LocallyStoredItemsKeys } from '../../model/LocallyStoredItemsKeys';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +14,12 @@ export class HeaderComponent implements OnInit {
 
 
   email: string | null
-  username: string
+  fullName: string
 
   constructor(
     private router: Router,
     private authService: AuthService
-  ){}
+  ) { }
 
   uiState = {
     isNavbarCollapsed: false,
@@ -28,14 +30,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getScreenSize()
-    this.userSubject();
+    this.userInfo();
   }
 
-  userSubject() {
-    this.authService.userSubject.subscribe(user => {
-      this.email = user!.email ?? null;
-      this.username = user!.username ?? "";
-    });
+  userInfo() {
+    const userJson = localStorage.getItem(LocallyStoredItemsKeys.User)
+    if (userJson !== null) {
+      const user = JSON.parse(userJson);
+      this.email = user.email
+      this.fullName = user.fullName
+    }
   }
   // Listen for window size changes
   @HostListener("window:resize", ["$event"])
@@ -46,12 +50,9 @@ export class HeaderComponent implements OnInit {
       : (this.uiState.isOnMidScreen = false);
   }
 
-  onSelected(selectedItem:string){
+  onSelected(selectedItem: string) {
     this.uiState.activeItem = selectedItem
   }
 
-  logout(){
-    localStorage.clear();
-    this.router.navigate([AppRoutes.Auth.signIn.full])
-  }
+  logout() { this.authService.logout() }
 }

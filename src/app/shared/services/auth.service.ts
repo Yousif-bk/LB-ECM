@@ -21,10 +21,7 @@ export class AuthService {
   signUp(signUpReq: SignUpReq): Observable<SignUpReq> {
     return this.http.post(this.apiUrl + ApiRoutes.Auth.signUp, signUpReq).pipe(
       tap((res: any) => {
-        // Save access token on local storage
-        localStorage.setItem(LocallyStoredItemsKeys.JWT, res.token);
-        // Set authenticated user flag
-        this.setIsLoggedIn(true);
+        this.router.navigate([AppRoutes.Auth.signIn.full]);
       })
     );
   }
@@ -37,22 +34,22 @@ export class AuthService {
         // Set authenticated user flag
         this.setIsLoggedIn(true);
         const userRole = res.roles[0];
-
         const email = res.email;
-        const username = res.username;
+        const fullName = res.fullName;
         const userId = res.userId;
-
+        const phoneNumber = res.phoneNumber;
         // Create a User object
         const user: User = {
           email: email,
-          username: username,
+          fullName: fullName,
           userId: userId,
+          phoneNumber: phoneNumber,
           role: userRole
         };
-
         // Send the user data to the BehaviorSubject in AuthService
+        const userJson = JSON.stringify(user);
         this.userSubject.next(user);
-
+        localStorage.setItem(LocallyStoredItemsKeys.User, userJson);
         this.redirectBasedOnRole(userRole);
       })
     );
@@ -79,7 +76,7 @@ export class AuthService {
     return this.isLoggedIn;
   }
   private redirectBasedOnRole(userRole: string): void {
-    if (userRole === 'User') {
+    if (userRole === 'user') {
       this.router.navigate([AppRoutes.Request.User.main]);
     } else if (userRole === 'admin') {
       this.router.navigate([AppRoutes.Request.Admin.main]);

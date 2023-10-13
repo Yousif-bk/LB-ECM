@@ -34,23 +34,33 @@ export class SignUpComponent implements OnInit {
     this.signUpFormGroup = this.fb.group({
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
+      username: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/),]],
       password: [null, [Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$")]],
-      confirmPassword: [null, [Validators.required]]
-    },{
-      validators: [Validation.match('password', 'confirmPassword')]
-    });
+      role: ["user", [Validators.required]],
+      // confirmPassword: [null, [Validators.required]]
+    },
+    // { validators: [Validation.match('password', 'confirmPassword')]}
+    );
   }
 
 
   signUp() {
     this.uiState.isLoading = true
     this.uiState.isSubmitting = true
+    const firstName = this.signUpFormGroup.get('firstName')?.value;
+    const lastName = this.signUpFormGroup.get('lastName')?.value;
+    if (firstName && lastName) {
+      const username = `${firstName}${lastName.charAt(0)}`;
+      this.signUpFormGroup.get('username')?.setValue(username);
+    }
     if (this.signUpFormGroup.invalid) {
       this.uiState.isLoading = false
       return
     }
+
     this.authService.signUp(this.signUpFormGroup.value).subscribe({
       next: (res) => {
         this.uiState.isLoading = false

@@ -1,3 +1,4 @@
 export enum LocallyStoredItemsKeys {
-  JWT = 'App:jwt'
+  JWT = 'App:jwt',
+  User = 'user'
 }

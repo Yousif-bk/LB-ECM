@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand"><img width="40px" height="5%" src="../../../../assets/svg/logo-new.svg" alt=""></a>
+    <a class="navbar-brand"><img width="15%" height="15%" src="../../../../assets/images/logo.png" alt=""></a>
 
     <button (click)="uiState.isNavbarCollapsed = !uiState.isNavbarCollapsed" class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -9,15 +9,15 @@
     </button>
     <div [ngClass]="(uiState.isOnMidScreen && uiState.isNavbarCollapsed) ? 'nav-collapsed':'nav-uncollapsed'" class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active"
           [class.active]="uiState.activeItem == 'home'" (click)="onSelected('home')">Home</a>
-        </li>
+        </li> -->
       </ul>
       <span (click)="logout()">Tettt</span>
       <div class="d-flex image">
         <div class="avatar avatar-sm avatar-circle">
-          <img class="avatar-img" src="../../../../assets/images/img6.jpg" alt="">
+          <img class="avatar-img" src="../../../../assets/images/Portrait_Placeholder.png" alt="">
           <span class="avatar-status avatar-sm-status avatar-status-success"></span>
         </div>
           <!-- Start Mega-Menu -->
@@ -25,10 +25,10 @@
             <div class="dropdown-item-text">
               <div class="d-flex align-items-center">
                 <div class="avatar avatar-sm avatar-circle">
-                  <img class="avatar-img" src="../../../../assets/images/img6.jpg" alt="">
+                  <img class="avatar-img" src="../../../../assets/images/Portrait_Placeholder.png" alt="">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <h6>{{username}}</h6>
+                  <h6>{{fullName}}</h6>
                   <div class="card-text text-body">{{email}}</div>
                 </div>
               </div>

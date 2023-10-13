@@ -1,7 +1,7 @@
 export const ApiRoutes = {
   Auth: {
     signIn: 'api/user/login',
-    signUp: 'account/create',
+    signUp: 'api/user/create',
   },
   Request: {
     createRequest: 'api/request/create',

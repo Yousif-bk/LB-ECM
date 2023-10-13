@@ -1,128 +1,129 @@
 .container-fluid {
-  padding-left: 4rem 2rem;
-  padding-right: 4rem 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .content {
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
 }
-// Card
+
 .card {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: .0625rem solid rgba(231, 234, 243, .7);
-  border-radius: .75rem
+  position: relative !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  min-width: 0 !important;
+  word-wrap: break-word !important;
+  background-color: #fff !important;
+  background-clip: border-box !important;
+  border: .0625rem solid rgba(231, 234, 243, .7) !important;
+  border-radius: .75rem !important;
 }
 
 .card-header {
-  padding: 1.3125rem 1.3125rem;
-  margin-bottom: 0;
-  background-color: transparent;
-  border-bottom: .0625rem solid rgba(231, 234, 243, .7)
+  padding: 1.3125rem !important;
+  margin-bottom: 0 !important;
+  background-color: transparent !important;
+  border-bottom: .0625rem solid rgba(231, 234, 243, .7) !important;
 }
 
 .card-header-title {
-  margin-bottom: 0
+  margin-bottom: 0 !important;
 }
 
 .card-header-title+.card-text {
-  margin-top: .25rem
+  margin-top: .25rem !important;
 }
 
 .card-body {
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  padding: 1.3125rem 1.3125rem
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+  padding: 1.3125rem !important;
 }
-// End Card
 
-// Form Control
 .form-control {
-  display: block;
-  width: 100%;
-  padding: .6125rem 1rem;
-  font-size: .875rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #1e2022;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: .0625rem solid rgba(231, 234, 243, .7);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: .3125rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+  display: block !important;
+  width: 100% !important;
+  padding: .6125rem 1rem !important;
+  font-size: .875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #1e2022 !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: .0625rem solid rgba(231, 234, 243, .7) !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: .3125rem !important;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
 }
 
 .form-control:focus {
-  color: #1e2022;
-  background-color: #fff;
-  outline: 0;
-  box-shadow: 0 0 1rem 0 rgba(218, 220, 223, 0.25)
+  color: #1e2022 !important;
+  background-color: #fff !important;
+  outline: 0 !important;
+  box-shadow: 0 0 1rem 0 rgba(218, 220, 223, 0.25) !important;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #e9ecef !important;
+  opacity: 1 !important;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #377dff;
-  border-color: #377dff
+  color: #fff !important;
+  background-color: #377dff !important;
+  border-color: #377dff !important;
 }
 
 .btn-primary:hover {
-  color: #fff;
-  background-color: #2f6ad9;
-  border-color: #2c64cc
+  color: #fff !important;
+  background-color: #2f6ad9 !important;
+  border-color: #2c64cc !important;
 }
 
 .btn-check:focus+.btn-primary,
 .btn-primary:focus {
-  color: #fff;
-  background-color: #2f6ad9;
-  border-color: #2c64cc;
-  box-shadow: 0 0 0 0 rgba(85, 145, 255, .5)
+  color: #fff !important;
+  background-color: #2f6ad9 !important;
+  border-color: #2c64cc !important;
+  box-shadow: 0 0 0 0 rgba(85, 145, 255, .5) !important;
 }
 
 .display-5 {
-  font-size: calc(1.275rem + .3vw);
-  font-weight: 600;
-  line-height: 1.2
+  font-size: calc(1.275rem + .3vw) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
 }
 
 .link {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .bg-dark {
   background-color: #132144 !important;
 }
 
-// Button
 .btn-ghost-light {
-  color: #f9fafc;
-  background-color: transparent;
+  color: #f9fafc !important;
+  background-color: transparent !important;
 }
 
 .btn-ghost-danger {
-  color: #ed4c78;
-  background-color: transparent;
+  color: #ed4c78 !important;
+  background-color: transparent !important;
 }
 
 .btn-white {
-  background-color: #fff;
-  border-color: rgba(231, 234, 243, .7);
+  background-color: #fff !important;
+  border-color: rgba(231, 234, 243, .7) !important;
 }
 
 .btn-white:hover {
-  color: #1366ff;
-  box-shadow: 0 3px 6px -2px rgb(140 152 164 / 25%);
+  color: #1366ff !important;
+  box-shadow: 0 3px 6px -2px rgb(140 152 164 / 25%) !important;
 }
 
 // Alert

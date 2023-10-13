@@ -1,62 +1,93 @@
 <div class="content container-fluid">
-
   <div class="d-flex justify-content-center">
-
-    <div class="col-lg-8">
+    <div class="col-lg-12">
+      <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
       <div class="card shadow-sm animated flipInX delay-02">
         <div class="card-header">
-          <div class="card-header-title">Customer Request</div>
+          <div class="card-header-title bold">Customer Request</div>
         </div>
         <div class="card-body">
           <div *ngIf="uiState.isSuccess" class="alert alert-success" role="alert">
             Request Completed Successfully"
           </div>
-        <form [formGroup]="createRequestForm" (ngSubmit)="createRequest()">
-          <div class="row">
-            <div class="col-sm-6">
-              <label>Customer Name</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="customerName">
+          <form *ngIf="!uiState.isFormVisual" [formGroup]="locationtForm" (ngSubmit)="locationRequest()">
+            <div class="row">
+
+              <div class="col-sm-6">
+                <label>Select Emirates</label>
+                <div class="mb-4">
+                  <select class="form-control">
+                    <option value="" disabled>Select an Emirates</option>
+                    <option *ngFor="let emirate of emirates" [value]="emirate.value">{{ emirate.label }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <label>Select an Area</label>
+                <div class="mb-4">
+                  <select class="form-control" formControlName="area">
+                    <option value="" selected disabled>Select an Area</option>
+                    <option *ngFor="let area of filteredAreas" [value]="area.value">{{ area.label }}</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="d-flex justify-content-end gap-3">
+                <button type="submit" class="btn btn-primary">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="uiState.isFormVisual" [formGroup]="createRequestForm" (ngSubmit)="createRequest()">
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Customer Name</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="customerName" readonly>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('customerName')?.hasError('required')
                          || createRequestForm.get('customerName')?.touched && createRequestForm.get('customerName')?.hasError('required'))">
                     <span> Customer Name is <strong>required</strong></span>
                   </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-6">
-              <label>Email</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="email">
-                <div class="v-message"
-                  *ngIf="(uiState.isSubmitting && createRequestForm.get('email')?.hasError('required')
+              <div class="col-sm-6">
+                <label>Email</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="email" readonly>
+                  <div class="v-message"
+                    *ngIf="(uiState.isSubmitting && createRequestForm.get('email')?.hasError('required')
                                          || createRequestForm.get('email')?.touched && createRequestForm.get('email')?.hasError('required'))">
-                  <span> Email is <strong>required</strong></span>
+                    <span> Email is <strong>required</strong></span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-6">
-              <label>Mobile</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="mobile">
-                <div class="v-message"
-                  *ngIf="(uiState.isSubmitting && createRequestForm.get('mobile')?.hasError('required')
+              <div class="col-sm-6">
+                <label>Mobile</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="mobile" readonly>
+                  <div class="v-message"
+                    *ngIf="(uiState.isSubmitting && createRequestForm.get('mobile')?.hasError('required')
                                          || createRequestForm.get('mobile')?.touched && createRequestForm.get('mobile')?.hasError('required'))">
-                  <span> Mobile Name is <strong>required</strong></span>
+                    <span> Mobile Name is <strong>required</strong></span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-6">
-              <label>EID</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="eid">
-                <div class="v-message"
-                  *ngIf="(uiState.isSubmitting && createRequestForm.get('eid')?.hasError('required')
+              <div class="col-sm-6">
+                <label>EID</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="eid">
+                  <div class="v-message"
+                    *ngIf="(uiState.isSubmitting && createRequestForm.get('eid')?.hasError('required')
                                                          || createRequestForm.get('eid')?.touched && createRequestForm.get('eid')?.hasError('required'))">
-                  <span> Eid  is <strong>required</strong></span>
+                    <span> Eid is <strong>required</strong></span>
+                  </div>
                 </div>
               </div>
-            </div>
               <div class="col-sm-12">
                 <label>Trade License</label>
                 <div class="mb-4">
@@ -68,38 +99,38 @@
                   </div>
                 </div>
               </div>
-            <div class="col-sm-6">
-              <label>Authorised Person</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="authorisedPerson">
-                    <div class="v-message"
-                      *ngIf="(uiState.isSubmitting && createRequestForm.get('authorisedPerson')?.hasError('required')
+              <div class="col-sm-6">
+                <label>Authorised Person</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="authorisedPerson">
+                  <div class="v-message"
+                    *ngIf="(uiState.isSubmitting && createRequestForm.get('authorisedPerson')?.hasError('required')
                                                                                || createRequestForm.get('authorisedPerson')?.touched && createRequestForm.get('authorisedPerson')?.hasError('required'))">
-                      <span> Authorised Person is <strong>required</strong></span>
-                    </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <label>Campaign Content</label>
-              <div class="mb-4">
-                <input type="text" class="form-control" formControlName="campaignContent">
-                    <div class="v-message"
-                      *ngIf="(uiState.isSubmitting && createRequestForm.get('campaignContent')?.hasError('required')
-                                                                               || createRequestForm.get('campaignContent')?.touched && createRequestForm.get('campaignContent')?.hasError('required'))">
-                      <span> Campaign Content is <strong>required</strong></span>
-                    </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end gap-3">
-              <button type="submit" [disabled]="uiState.isLoading" class="btn btn-primary">
-                <div *ngIf="uiState.isLoading" class="spinner-grow spinner-grow-sm">
-                  <span class="visually-hidden">Loading...</span>
+                    <span> Authorised Person is <strong>required</strong></span>
+                  </div>
                 </div>
-                <span *ngIf="!uiState.isLoading">Create</span>
-              </button>
+              </div>
+              <div class="col-sm-6">
+                <label>Campaign Content</label>
+                <div class="mb-4">
+                  <input type="text" class="form-control" formControlName="campaignContent">
+                  <div class="v-message"
+                    *ngIf="(uiState.isSubmitting && createRequestForm.get('campaignContent')?.hasError('required')
+                                                                               || createRequestForm.get('campaignContent')?.touched && createRequestForm.get('campaignContent')?.hasError('required'))">
+                    <span> Campaign Content is <strong>required</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-3">
+                <button type="submit" [disabled]="uiState.isLoading" class="btn btn-primary">
+                  <div *ngIf="uiState.isLoading" class="spinner-grow spinner-grow-sm">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span *ngIf="!uiState.isLoading">Create</span>
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
 
         </div>
       </div>
