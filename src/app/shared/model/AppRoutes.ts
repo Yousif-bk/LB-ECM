@@ -20,6 +20,7 @@ export const AppRoutes = {
     main: "",
     User: {
       main: "create-request",
+      details: "user-request-list",
     },
     Admin: {
       main: "admin-requests-list",

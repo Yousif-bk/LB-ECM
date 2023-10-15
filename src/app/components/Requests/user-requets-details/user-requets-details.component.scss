@@ -1,0 +1,21 @@
+/* In your component's stylesheet */
+.pending {
+  background-color: grey;
+}
+
+.approved {
+  background-color: #19a58e;
+}
+
+.rejected {
+  background-color: red;
+}
+
+
+.status {
+      width: 100px;
+        text-align: center;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+}

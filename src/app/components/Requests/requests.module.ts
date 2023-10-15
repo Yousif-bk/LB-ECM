@@ -6,6 +6,8 @@ import { SuperAdminListComponent } from './super-admin-list/super-admin-list.com
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { CreatesRequestComponent } from './creates-request/creates-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRequetsDetailsComponent} from './user-requets-details/user-requets-details.component';
+import { ApprovalStatusPipe } from 'src/app/shared/helper/approval-status.pipe';
 
 
 
@@ -13,7 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     SuperAdminListComponent,
     AdminListComponent,
-    CreatesRequestComponent
+    CreatesRequestComponent,
+    UserRequetsDetailsComponent,
+    ApprovalStatusPipe
   ],
   imports: [
     CommonModule,

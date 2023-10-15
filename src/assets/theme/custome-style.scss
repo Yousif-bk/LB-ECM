@@ -192,7 +192,19 @@
   border-top-right-radius: 12px;
   border-bottom-right-radius: 6px;
 }
+.list-py-2>li:not(:first-child) {
+  padding-top: .5rem
+}
 
+.list-py-2>li:not(:last-child) {
+  padding-bottom: .5rem
+}
+.dropdown-item-icon {
+  display: inline-block;
+  opacity: .7;
+  width: 1.5rem;
+  color: #677788;
+}
 // End Table
 @keyframes alerttt {
   from {

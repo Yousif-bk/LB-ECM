@@ -36,6 +36,11 @@ export class AppService {
   getSuperAdminRequest(): Observable<any> {
     return this.http.get(this.apiUrl + ApiRoutes.Request.getSuperAdminRequest);
   }
+
+  getUserRequestDetail(userId: string): Observable<any> {
+    return this.http.get(this.apiUrl + ApiRoutes.Request.getUserRequestDetail  + userId);
+  }
+
   adminApporvalRequest(adminApproval: AdminApproval): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.Request.adminApporvalRequest, adminApproval);
   }

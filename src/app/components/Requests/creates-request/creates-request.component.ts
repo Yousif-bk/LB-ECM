@@ -39,9 +39,11 @@ export class CreatesRequestComponent {
     isSubmitting: false,
     isAlertVisible: false,
     errorMessage: '',
+    successMessage: '',
     isSuccess: false,
     isFormVisual: false,
-    isDisabled: true
+    isDisabled: true,
+    locaionErrorMessage: ''
   }
 
   // Forms
@@ -88,6 +90,8 @@ export class CreatesRequestComponent {
     this.locationtForm.get('emirate')?.valueChanges.subscribe((selectedEmirate) => {
       this.updateAreas(selectedEmirate);
     });
+    this.locationtForm.get('area')?.valueChanges.subscribe((selectedArea) => {
+    });
   }
 
 
@@ -107,6 +111,7 @@ export class CreatesRequestComponent {
     this.appService.createRequest(this.createRequestForm.value).subscribe(
       {
         next: (res) => {
+          this.uiState.successMessage = res.responseMessage
           this.uiState.isLoading = false, this.uiState.isSuccess = true, setTimeout(() => {
             this.uiState.isSuccess = false
           }, 2000);
@@ -117,7 +122,7 @@ export class CreatesRequestComponent {
             this.uiState.errorMessage = error.error.responseMessage
           setTimeout(() => {
             this.uiState.isAlertVisible = false
-          }, 2000);
+          }, 4000);
         }
       }
     )
@@ -134,10 +139,13 @@ export class CreatesRequestComponent {
     }
   }
 
-  locationRequest() {
-    this.uiState.isFormVisual = true
-    this.appService.addUserLocation(this.locationtForm.value).subscribe(response=> {
-      console.log(response);
+  addUserLocation    () {
+    this.appService.addUserLocation(this.locationtForm.value).subscribe( {
+      next: (res) => {
+        this.uiState.isFormVisual = true
+      },
+      error: (err) => {
+      },
     })
   }
 

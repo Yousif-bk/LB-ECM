@@ -8,10 +8,10 @@
         </div>
         <div class="card-body">
           <div *ngIf="uiState.isSuccess" class="alert alert-success" role="alert">
-            Request Completed Successfully"
+            {{uiState.successMessage}}
           </div>
 
-          <form *ngIf="!uiState.isFormVisual" [formGroup]="locationtForm" (ngSubmit)="locationRequest()">
+          <form *ngIf="!uiState.isFormVisual" [formGroup]="locationtForm" (ngSubmit)="addUserLocation()">
             <div class="row">
 
               <div class="col-sm-6">
