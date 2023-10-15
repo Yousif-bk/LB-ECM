@@ -37,7 +37,7 @@ export class AppService {
     return this.http.get(this.apiUrl + ApiRoutes.Request.getSuperAdminRequest);
   }
 
-  getUserRequestDetail(userId: string): Observable<any> {
+  getUserRequestDetail(userId: any): Observable<any> {
     return this.http.get(this.apiUrl + ApiRoutes.Request.getUserRequestDetail  + userId);
   }
 

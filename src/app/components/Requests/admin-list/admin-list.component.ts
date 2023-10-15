@@ -1,6 +1,8 @@
 import { IRequest } from 'src/app/shared/model/IRequest';
 import { AppService } from './../../../shared/services/app.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 
 @Component({
   selector: 'app-admin-list',
@@ -11,7 +13,7 @@ export class AdminListComponent implements OnInit {
 
 
   requestlist: IRequest[] = [];
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
   ngOnInit(): void {
     this.appService.getAdminRequest().subscribe(res => {
       this.requestlist = res as IRequest[];
@@ -36,5 +38,10 @@ export class AdminListComponent implements OnInit {
     };
     this.appService.adminApporvalRequest(adminApproval).subscribe(res => {
     })
+  }
+
+  adminRequestDetail(requestid: string) {
+
+    this.router.navigate([AppRoutes.Request.Admin.details + requestid]);
   }
 }

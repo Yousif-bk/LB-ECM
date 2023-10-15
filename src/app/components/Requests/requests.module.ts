@@ -8,6 +8,8 @@ import { CreatesRequestComponent } from './creates-request/creates-request.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRequetsDetailsComponent} from './user-requets-details/user-requets-details.component';
 import { ApprovalStatusPipe } from 'src/app/shared/helper/approval-status.pipe';
+import { AdminRequestDetailsComponent } from './admin-request-details/admin-request-details.component';
+import { SuperadminRequestDetailsComponent } from './superadmin-request-details/superadmin-request-details.component';
 
 
 
@@ -17,7 +19,9 @@ import { ApprovalStatusPipe } from 'src/app/shared/helper/approval-status.pipe';
     AdminListComponent,
     CreatesRequestComponent,
     UserRequetsDetailsComponent,
-    ApprovalStatusPipe
+    ApprovalStatusPipe,
+    AdminRequestDetailsComponent,
+    SuperadminRequestDetailsComponent
   ],
   imports: [
     CommonModule,

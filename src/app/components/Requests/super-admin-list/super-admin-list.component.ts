@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 import { IRequest } from 'src/app/shared/model/IRequest';
 import { AppService } from 'src/app/shared/services/app.service';
 
@@ -9,7 +11,7 @@ import { AppService } from 'src/app/shared/services/app.service';
 })
 export class SuperAdminListComponent {
   requestlist: IRequest[] = [];
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
   ngOnInit(): void {
     this.appService.getAdminRequest().subscribe(res => {
       this.requestlist = res as IRequest[];
@@ -23,7 +25,6 @@ export class SuperAdminListComponent {
     };
     this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
       console.log(res);
-
     })
   }
 
@@ -34,5 +35,8 @@ export class SuperAdminListComponent {
     };
     this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
     })
+  }
+  adminRequestDetail(requestid: string) {
+    this.router.navigate([AppRoutes.Request.SuperAdmin.details + requestid])
   }
 }

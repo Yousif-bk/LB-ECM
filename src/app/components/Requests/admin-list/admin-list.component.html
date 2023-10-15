@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of requestlist">
-      <td>
+      <td class="request-details"  [routerLink]="['/admin-request-details/', item.userId]" >
         <div>{{item.customerName}}</div>
       </td>
       <td>

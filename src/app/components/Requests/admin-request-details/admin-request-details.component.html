@@ -1,0 +1,83 @@
+<div class="content container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-11">
+      <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
+      <div class="card shadow-sm animated flipInX delay-02">
+        <div class="card-header">
+          <div class="card-header-title bold display-5">Admin Approval</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <ul class="list-unstyled list-py-2 text-dark mb-0">
+                <li class="pb-0"><span class="card-subtitle">Status</span></li>
+                <li>
+                  <div>Admin Approval:</div>
+                  <div class="status" [ngClass]="{
+                    'pending': userRequestDetails.approval.adminApprovalStatus === 1,
+                    'approved': userRequestDetails.approval.adminApprovalStatus === 2,
+                    'rejected': userRequestDetails.approval.adminApprovalStatus === 3
+                  }">
+                    {{ userRequestDetails.approval.adminApprovalStatus | approvalStatus }}
+                  </div>
+                </li>
+                <li>
+                  <div>Super Admin Approval:</div>
+                  <div class="status" [ngClass]="{
+                    'pending': userRequestDetails.approval.superAdminApprovalStatus === 1,
+                    'approved': userRequestDetails.approval.superAdminApprovalStatus === 2,
+                    'rejected': userRequestDetails.approval.superAdminApprovalStatus === 3
+                  }">
+                    {{ userRequestDetails.approval.superAdminApprovalStatus | approvalStatus }}
+                  </div>
+                </li>
+                <li>
+                  <div class="property">Full Name:</div>
+                  <div class="value">{{ userRequestDetails.customerName }}</div>
+                </li>
+                <li>
+                  <div class="property">EID:</div>
+                  <div class="value">{{ userRequestDetails.eid }}</div>
+                </li>
+                <li>
+                  <div class="property">Trade License:</div>
+                  <div class="value">{{ userRequestDetails.tradeLicense }}</div>
+                </li>
+                <li>
+                  <div class="property">Authorised Person:</div>
+                  <div class="value">{{ userRequestDetails.authorisedPerson }}</div>
+                </li>
+                <!-- Add other properties and values in the same format -->
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="list-unstyled list-py-2 text-dark mb-0">
+                <li class="pb-0"><span class="card-subtitle">Location</span></li>
+                <li>
+                  <div class="property">Emirate:</div>
+                  <div class="value">{{ userRequestDetails.user.location.emirate }}</div>
+                </li>
+                <li>
+                  <div class="property">Address:</div>
+                  <div class="value">{{ userRequestDetails.user.location.address }}</div>
+                </li>
+                <li>
+                  <div class="property">Phone Number:</div>
+                  <div class="value">{{ userRequestDetails.mobile }}</div>
+                </li>
+                <li>
+                  <div class="property">Email:</div>
+                  <div class="value">{{ userRequestDetails.email }}</div>
+                </li>
+                <li>
+                  <div class="property">Campaign Content:</div>
+                  <div class="value">{{ userRequestDetails.campaignContent }}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
