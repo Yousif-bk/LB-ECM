@@ -4,8 +4,8 @@ export interface IRequest {
   customerName: string;
   mobile: string;
   email: string;
-  eid: string | null;
-  tradeLicense: string | null;
+  eid: string;
+  tradeLicense: string;
   authorisedPerson: string;
   campaignContent: string;
 }

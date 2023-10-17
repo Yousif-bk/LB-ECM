@@ -4,7 +4,12 @@
       <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
       <div class="card shadow-sm animated flipInX delay-02">
         <div class="card-header">
-          <div class="card-header-title bold">Customer Request</div>
+         <div class="d-flex justify-content-between">
+          <div class="card-header-title display-5">Customer Request</div>
+          <div class="btn btn-primary">
+            <i class="bi bi-arrow-left-circle-fill"></i>
+          </div>
+         </div>
         </div>
         <div class="card-body">
           <div *ngIf="uiState.isSuccess" class="alert alert-success" role="alert">
@@ -46,7 +51,7 @@
               <div class="col-sm-6">
                 <label>Customer Name</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="customerName" readonly>
+                  <input type="text" class="form-control" formControlName="customerName"  readonly>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('customerName')?.hasError('required')
                          || createRequestForm.get('customerName')?.touched && createRequestForm.get('customerName')?.hasError('required'))">
@@ -79,7 +84,7 @@
               <div class="col-sm-6">
                 <label>EID</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="eid">
+                  <input type="text" class="form-control" formControlName="eid" readonly>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('eid')?.hasError('required')
                                                          || createRequestForm.get('eid')?.touched && createRequestForm.get('eid')?.hasError('required'))">
@@ -87,10 +92,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12">
+              <div class="col-sm-6">
                 <label>Trade License</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="tradeLicense">
+                  <input type="text" class="form-control" formControlName="tradeLicense" readonly>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('tradeLicense')?.hasError('required')
                                                            || createRequestForm.get('tradeLicense')?.touched && createRequestForm.get('tradeLicense')?.hasError('required'))">
@@ -101,7 +106,7 @@
               <div class="col-sm-6">
                 <label>Authorised Person</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="authorisedPerson">
+                  <input type="text" class="form-control" formControlName="authorisedPerson" readonly>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('authorisedPerson')?.hasError('required')
                                                                                || createRequestForm.get('authorisedPerson')?.touched && createRequestForm.get('authorisedPerson')?.hasError('required'))">
@@ -109,10 +114,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <label>Campaign Content</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="campaignContent">
+                  <textarea type="text" class="form-control" formControlName="campaignContent"></textarea>
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('campaignContent')?.hasError('required')
                                                                                || createRequestForm.get('campaignContent')?.touched && createRequestForm.get('campaignContent')?.hasError('required'))">

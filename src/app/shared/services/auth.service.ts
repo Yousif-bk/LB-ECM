@@ -35,13 +35,17 @@ export class AuthService {
         this.setIsLoggedIn(true);
         const userRole = res.roles[0];
         const email = res.email;
-        const fullName = res.fullName;
+        const name = res.name;
         const userId = res.userId;
         const phoneNumber = res.phoneNumber;
+        const eid = res.phoneNumber;
+        const tradeLicense = res.phoneNumber;
         // Create a User object
         const user: User = {
           email: email,
-          fullName: fullName,
+          name: name,
+          eid: eid,
+          tradeLicense: tradeLicense,
           userId: userId,
           phoneNumber: phoneNumber,
           role: userRole
@@ -61,7 +65,7 @@ export class AuthService {
   async logout(): Promise<any> {
     await localStorage.clear();
     this.setIsLoggedIn(false);
-    await this.router.navigate([AppRoutes.Auth.signIn.main]);
+    await this.router.navigate([AppRoutes.Auth.signIn.full]);
   }
 
   private isTokenAvailable(): boolean {
@@ -77,7 +81,7 @@ export class AuthService {
   }
   private redirectBasedOnRole(userRole: string): void {
     if (userRole === 'user') {
-      this.router.navigate([AppRoutes.Request.User.main]);
+      this.router.navigate([AppRoutes.Request.User.details]);
     } else if (userRole === 'admin') {
       this.router.navigate([AppRoutes.Request.Admin.main]);
     } else if (userRole === 'superadmin') {

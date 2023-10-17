@@ -18,8 +18,7 @@ export class SuperadminRequestDetailsComponent implements OnInit {
   }
 
   getUserDetail() {
-    const requestId = this.router.url.split('/superadmin-request-details/')[1];
-
+    const requestId = this.router.url.split('/security-request-details/')[1];
     this.appService.getUserRequestDetail(requestId).subscribe((res) => {
       this.userRequestDetails = res;
     })

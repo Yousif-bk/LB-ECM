@@ -26,6 +26,7 @@ export class UserRequetsDetailsComponent implements OnInit {
   }
   getUserRequestDetail(userId: string) {
     this.appService.getUserRequestDetail(userId).subscribe((res) => {
+
       this.userRequestDetails = res
     })
   }

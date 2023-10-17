@@ -32,10 +32,11 @@ export class SignUpComponent implements OnInit {
 
   initForm() {
     this.signUpFormGroup = this.fb.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
+      name: [null, [Validators.required]],
       username: [null, [Validators.required]],
       phoneNumber: [null, [Validators.required]],
+      eid: [null, [Validators.required]],
+      tradeLicense: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/),]],
       password: [null, [Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$")]],
@@ -50,12 +51,9 @@ export class SignUpComponent implements OnInit {
   signUp() {
     this.uiState.isLoading = true
     this.uiState.isSubmitting = true
-    const firstName = this.signUpFormGroup.get('firstName')?.value;
-    const lastName = this.signUpFormGroup.get('lastName')?.value;
-    if (firstName && lastName) {
-      const username = `${firstName}${lastName.charAt(0)}`;
-      this.signUpFormGroup.get('username')?.setValue(username);
-    }
+    const name = this.signUpFormGroup.get('name')?.value;
+    this.signUpFormGroup.get('username')?.setValue(name);
+
     if (this.signUpFormGroup.invalid) {
       this.uiState.isLoading = false
       return

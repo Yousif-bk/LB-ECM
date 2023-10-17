@@ -9,7 +9,7 @@
 <!-- Table -->
 <table class='table w-100 mb-4 main-table '>
   <thead>
-    <th>CustomerName</th>
+    <th>Customer Name</th>
     <th>Mobile</th>
     <th>Email</th>
     <th>EID</th>
@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of requestlist">
-      <td class="request-details"  [routerLink]="['/admin-request-details/', item.userId]" >
+      <td class="request-details" [routerLink]="['/admin-request-details/', item.userId]">
         <div>{{item.customerName}}</div>
       </td>
       <td>
@@ -41,10 +41,40 @@
       <td>
         <div>{{item.campaignContent}}</div>
       </td>
-      <td>
-        <span (click)="approve(2, item.requestId)"><i style="color: green; cursor: pointer;" class="bi bi-check2-square p-3"></i></span>
-        <span (click)="reject(3, item.requestId)"><i style="color: red; cursor: pointer;" class="bi bi-x-lg"></i></span>
+      <td class="d-flex gap-3">
+        <span class="approved-icon" (click)="openVerticallyCentered(approveModel)"><i style="color: white; cursor: pointer;"
+            class="bi bi-check2-square p-3"></i></span>
+        <span class="rejected-icon" (click)="openVerticallyCentered(rejectModel)"><i style="color: white; cursor: pointer;"
+            class="bi bi-x-lg"></i></span>
       </td>
+
+      <ng-template #approveModel let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Admin Approval Confirmation</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure it will be approved?&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="approve(1, item.requestId)" [routerLink]="['/admin-request-details/', item.userId]">Approve</button>
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+
+      <ng-template #rejectModel let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Admin Approval Confirmation</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure it will be reject?&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="reject(2, item.requestId)" [routerLink]="['/admin-request-details/', item.userId]">Reject</button>
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,8 @@
 export interface User {
   userId: string;
-  fullName: string;
+  name: string;
+  eid: string;
+  tradeLicense: string;
   email: string;
   phoneNumber: string;
   role: string;

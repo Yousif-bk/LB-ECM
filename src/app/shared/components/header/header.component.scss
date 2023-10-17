@@ -53,6 +53,7 @@
   top: calc(100% + 50px);
   box-shadow: 0 1.5rem 4rem rgba(145, 148, 158, 0.15);
   transition: top 0.3s, opacity 0.3s;
+  transition-delay: 2ms;
 }
 
 .menu-item {
@@ -87,6 +88,7 @@
     width: 1%;
     height: 1%;
     left: 5%;
+    transition-delay: 2ms;
   }
   @media (max-width: 767px) {
     .nav-uncollapsed {
@@ -106,6 +108,7 @@
       width: 50%;
       height: 90%;
       left: 5%;
+      transition-delay: 2ms;
     }
   }
 }

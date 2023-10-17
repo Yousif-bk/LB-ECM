@@ -11,3 +11,29 @@
     background-color: #f1f1f1;
     cursor: pointer;
   }
+
+  .approved {
+    background-color: #19a58e;
+    padding: 5px;
+    border-radius: 8px;
+    color: #fff;
+  }
+        .rejected {
+          background-color: rgb(163, 96, 96);
+          padding: 5px;
+          border-radius: 8px;
+          color: #fff;
+        }
+.approved-icon {
+  padding: 2px;
+  border-radius: 8px;
+  background-color: #19a58e;
+}
+
+.rejected-icon {
+  padding: 2px;
+  text-align: center;
+  width: 41px;
+  border-radius: 8px;
+  background-color: red
+}

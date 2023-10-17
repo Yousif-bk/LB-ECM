@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 import { IRequest } from 'src/app/shared/model/IRequest';
 import { AppService } from 'src/app/shared/services/app.service';
@@ -10,10 +11,16 @@ import { AppService } from 'src/app/shared/services/app.service';
   styleUrls: ['./super-admin-list.component.scss']
 })
 export class SuperAdminListComponent {
+
+
   requestlist: IRequest[] = [];
-  constructor(private appService: AppService, private router: Router) { }
+  isApproved: boolean = false;
+  isRejected: boolean = false;
+
+
+  constructor(private appService: AppService, private router: Router, private modalService: NgbModal) { }
   ngOnInit(): void {
-    this.appService.getAdminRequest().subscribe(res => {
+    this.appService.getSuperAdminRequest().subscribe(res => {
       this.requestlist = res as IRequest[];
     })
   }
@@ -24,7 +31,9 @@ export class SuperAdminListComponent {
       requestId: requestId
     };
     this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
-      console.log(res);
+      this.isRejected = false;
+      this.isApproved = true
+      this.modalService.dismissAll();
     })
   }
 
@@ -34,9 +43,15 @@ export class SuperAdminListComponent {
       requestId: requestId
     };
     this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
+      this.isRejected = true;
+      this.isApproved = false
+      this.modalService.dismissAll();
     })
   }
   adminRequestDetail(requestid: string) {
     this.router.navigate([AppRoutes.Request.SuperAdmin.details + requestid])
+  }
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 }

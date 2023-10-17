@@ -14,7 +14,7 @@
 
           <div class="text-center">
             <div class="mb-5">
-              <h1 class="display-5">Create your account</h1>
+              <h1 class="display-5">Account Creation</h1>
               <p>Already have an account? <a class="link" [routerLink]="'/auth/sign-in'">Sign in here</a></p>
             </div>
 
@@ -22,36 +22,44 @@
           </div>
           <!-- Form -->
           <form [formGroup]="signUpFormGroup">
-            <label class="form-label" for="fullNameSrEmail">Full name</label>
+            <label class="form-label" for="fullNameSrEmail">Name</label>
+            <div class="col-sm-12">
+              <!-- First name conttrol -->
+              <div class="mb-4">
+                <input type="text" class="form-control form-control-lg" formControlName="name" placeholder="Name">
+                <span class="invalid-feedback">Please enter your name.</span>
+                <div class="v-message"
+                  *ngIf="(uiState.isSubmitting && signUpFormGroup.get('name')?.hasError('required')
+                  || signUpFormGroup.get('name')?.touched && signUpFormGroup.get('name')?.hasError('name'))">
+                  <span> Name is <strong>required</strong></span>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-sm-6">
-                <!-- First name conttrol -->
+                <label>EID</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control form-control-lg" formControlName="firstName"
-                    placeholder="First Name">
-                  <span class="invalid-feedback">Please enter your first name.</span>
+                  <input type="text" class="form-control" formControlName="eid">
                   <div class="v-message"
-                    *ngIf="(uiState.isSubmitting && signUpFormGroup.get('firstName')?.hasError('required')
-                  || signUpFormGroup.get('firstName')?.touched && signUpFormGroup.get('firstName')?.hasError('required'))">
-                    <span> First Name is <strong>required</strong></span>
+                    *ngIf="(uiState.isSubmitting && signUpFormGroup.get('eid')?.hasError('required')
+                                                                                   || signUpFormGroup.get('eid')?.touched && signUpFormGroup.get('eid')?.hasError('required'))">
+                    <span> Eid is <strong>required</strong></span>
                   </div>
                 </div>
               </div>
-
               <div class="col-sm-6">
-                <!-- Last Name Control -->
+                <label>Trade License</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control form-control-lg" formControlName="lastName"
-                    placeholder="last Name">
-                  <!-- Last Name message validation -->
+                  <input type="text" class="form-control" formControlName="tradeLicense">
                   <div class="v-message"
-                    *ngIf="(uiState.isSubmitting && signUpFormGroup.get('lastName')?.hasError('required')
-                  || signUpFormGroup.get('lastName')?.touched && signUpFormGroup.get('lastName')?.hasError('required'))">
-                    <span> Last Name is <strong>required</strong></span>
+                    *ngIf="(uiState.isSubmitting && signUpFormGroup.get('tradeLicense')?.hasError('required')
+                                                                           || signUpFormGroup.get('tradeLicense')?.touched && signUpFormGroup.get('tradeLicense')?.hasError('required'))">
+                    <span> Trade License is <strong>required</strong></span>
                   </div>
                 </div>
               </div>
             </div>
+
 
             <!-- Email Control -->
             <div class="mb-4">
@@ -102,7 +110,6 @@
                 <span class="v-message"> Password is <strong>required</strong></span>
               </div>
             </div>
-
 
 
             <!-- On submit -->

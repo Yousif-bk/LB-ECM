@@ -20,7 +20,6 @@ export class AdminRequestDetailsComponent implements OnInit {
 
   getUserDetail(){
     const requestId = this.router.url.split('/admin-request-details/')[1];
-
     this.appService.getUserRequestDetail(requestId).subscribe((res) =>{
       this.userRequestDetails = res;
     })

@@ -64,8 +64,10 @@ export class CreatesRequestComponent {
       this.createRequestForm.get('userId')?.setValue(user?.userId)
       this.locationtForm.get('userId')?.setValue(user?.userId)
       this.createRequestForm.get('mobile')?.setValue(user?.phoneNumber)
-      this.createRequestForm.get('customerName')?.setValue(user?.fullName)
+      this.createRequestForm.get('customerName')?.setValue(user?.name)
       this.createRequestForm.get('email')?.setValue(user?.email)
+      this.createRequestForm.get('eid')?.setValue(user?.eid)
+      this.createRequestForm.get('tradeLicense')?.setValue(user?.tradeLicense)
     }
   }
   // inite Form

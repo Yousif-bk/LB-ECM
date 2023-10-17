@@ -27,8 +27,8 @@ export const AppRoutes = {
       details: "admin-request-details/:id",
     },
     SuperAdmin: {
-      main: "superAdmin-requests-list",
-      details: "superadmin-request-details/:id",
+      main: "security-requests-list",
+      details: "security-request-details/:id",
     }
   }
 

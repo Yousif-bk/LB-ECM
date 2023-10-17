@@ -1,7 +1,7 @@
 <div class="tabel-header py-3">
   <div class="mb-2 mb-md-0">
     <div class="display-5">
-      Super Admin Approval
+      Security Approval
     </div>
   </div>
   <div class="d-grid d-sm-flex gap-2">
@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of requestlist">
-    <td class="request-details" [routerLink]="['/superadmin-request-details/', item.userId]">
+    <td class="request-details" [routerLink]="['/security-request-details/', item.userId]">
         <div>{{item.customerName}}</div>
       </td>
       <td>
@@ -43,11 +43,43 @@
       <td>
         <div>{{item.campaignContent}}</div>
       </td>
-      <td>
-        <span (click)="approve(2, item.requestId)"><i style="color: green; cursor: pointer;"
+      <td class="d-flex gap-3" >
+        <span class="approved-icon" *ngIf="!isApproved"(click)="openVerticallyCentered(approveModel)"><i *ngIf="!isRejected"  style="color: white; cursor: pointer;"
             class="bi bi-check2-square p-3"></i></span>
-        <span (click)="reject(3, item.requestId)"><i style="color: red; cursor: pointer;" class="bi bi-x-lg"></i></span>
+        <span class="rejected-icon" *ngIf="!isApproved"  (click)="openVerticallyCentered(rejectModel)"><i *ngIf="!isRejected" style="color: white; cursor: pointer;" class="bi bi-x-lg"></i></span>
+        <span *ngIf="isRejected" class="rejected"><i class="bi bi-x"></i>Rejected</span>
+        <span *ngIf="isApproved" class="approved"><i class="bi bi-check2-all"></i>Approved</span>
       </td>
+
+      <ng-template #approveModel let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Security Approval Confirmation</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure it will be approved?&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="approve(1, item.requestId)"
+            [routerLink]="['/security-request-details/', item.userId]">Approve</button>
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
+
+      <ng-template #rejectModel let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Security Approval Confirmation</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure it will be reject?&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="reject(2, item.requestId)"
+            [routerLink]="['/security-request-details/', item.userId]">Reject</button>
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>
     </tr>
   </tbody>
 </table>
