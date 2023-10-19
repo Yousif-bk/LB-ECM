@@ -27,5 +27,10 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('../../components/Requests/requests.module').then(m => m.RequestsModule)
   },
+  {
+    path: AppRoutes.BigData.main,
+    canActivate: [AuthGuard],
+    loadComponent: () => import('../../components/big-data/big-data.component').then(m => m.BigDataComponent)
+  },
   { path: '**', component: PathNotFoundComponent },
 ]

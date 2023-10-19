@@ -3,6 +3,8 @@ import { AppService } from './../../../shared/services/app.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LocallyStoredItemsKeys } from 'src/app/shared/model/LocallyStoredItemsKeys';
+import { Router } from '@angular/router';
+import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 
 @Component({
   selector: 'app-creates-request',
@@ -11,7 +13,7 @@ import { LocallyStoredItemsKeys } from 'src/app/shared/model/LocallyStoredItemsK
 })
 export class CreatesRequestComponent {
   constructor(private appService: AppService,
-    private authService: AuthService,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   emirates = [
@@ -20,15 +22,15 @@ export class CreatesRequestComponent {
     { value: 'SHJ', label: 'SHJ' }
   ]
   areas = [
-    { value: 'dubai marina', label: 'Dubai Marina', emirate: 'DXB' },
-    { value: 'business bay', label: 'Business Bay', emirate: 'DXB' },
-    { value: 'deira', label: 'Deira', emirate: 'DXB' },
-    { value: 'yasIsland', label: 'Yas Island', emirate: 'AUH' },
-    { value: 'al reef', label: 'Al Reef', emirate: 'AUH' },
-    { value: 'al mushrif', label: 'Al Mushrif', emirate: 'AUH' },
-    { value: 'al falaj', label: 'Al Falaj', emirate: 'SHJ' },
-    { value: 'abu shagara ', label: 'Abu Shagara ', emirate: 'SHJ' },
-    { value: 'alnahd', label: 'Alnahda', emirate: 'SHJ' }
+    { value: 'Dubai Mrina', label: 'Dubai Marina', emirate: 'DXB' },
+    { value: 'Business bay', label: 'Business Bay', emirate: 'DXB' },
+    { value: 'Deira', label: 'Deira', emirate: 'DXB' },
+    { value: 'YasIsland', label: 'Yas Island', emirate: 'AUH' },
+    { value: 'Al Reef', label: 'Al Reef', emirate: 'AUH' },
+    { value: 'Al Mushrif', label: 'Al Mushrif', emirate: 'AUH' },
+    { value: 'Al Falaj', label: 'Al Falaj', emirate: 'SHJ' },
+    { value: 'Abu Shagara', label: 'Abu Shagara ', emirate: 'SHJ' },
+    { value: 'Alnahd', label: 'Alnahda', emirate: 'SHJ' }
   ];
 
   selectedEmirate: string;
@@ -117,6 +119,7 @@ export class CreatesRequestComponent {
           this.uiState.isLoading = false, this.uiState.isSuccess = true, setTimeout(() => {
             this.uiState.isSuccess = false
           }, 2000);
+          this.router.navigate([AppRoutes.Request.User.details])
         },
         error: (error) => {
           this.uiState.isAlertVisible = true,

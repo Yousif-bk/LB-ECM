@@ -18,32 +18,31 @@ export class AdminListComponent implements OnInit {
   constructor(private appService: AppService, private router: Router, private modalService: NgbModal) { }
   ngOnInit(): void {
     this.appService.getAdminRequest().subscribe(res => {
-
-      console.log(res);
-
       this.requestlist = res as IRequest[];
     })
   }
 
-  approve(adminApprovalStatus: number, requestId: string) {
+  approve(adminApprovalStatus: number, requestId: string, userId: string) {
     const adminApproval = {
       adminApprovalStatus: adminApprovalStatus,
       requestId: requestId
     };
     this.appService.adminApporvalRequest(adminApproval).subscribe(res => {
-      this.isApproved = true;
       this.modalService.dismissAll();
+      this.router.navigate(['/admin-request-details/', userId])
+      this.isApproved = true;
     })
   }
 
-  reject(adminApprovalStatus: number, requestId: string) {
+  reject(adminApprovalStatus: number, requestId: string, userId: string) {
     const adminApproval = {
       adminApprovalStatus: adminApprovalStatus,
       requestId: requestId
     };
     this.appService.adminApporvalRequest(adminApproval).subscribe(res => {
+      this.modalService.dismissAll();
+      this.router.navigate(['/admin-request-details/', userId])
       this.isRejected = true;
-
     })
   }
 

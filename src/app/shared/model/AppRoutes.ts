@@ -29,7 +29,10 @@ export const AppRoutes = {
     SuperAdmin: {
       main: "security-requests-list",
       details: "security-request-details/:id",
-    }
+    },
+  },
+  BigData: {
+    main: "user-big-data"
   }
 
 };

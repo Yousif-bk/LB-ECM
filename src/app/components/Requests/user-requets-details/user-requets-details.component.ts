@@ -11,6 +11,7 @@ import { UserRequestDetails } from 'src/app/shared/model/UserRequestDetails';
 export class UserRequetsDetailsComponent implements OnInit {
 
   userRequestDetails: UserRequestDetails
+  isLoading: boolean = false
 
   constructor(private appService: AppService) { }
   ngOnInit(): void {
@@ -25,9 +26,17 @@ export class UserRequetsDetailsComponent implements OnInit {
     }
   }
   getUserRequestDetail(userId: string) {
-    this.appService.getUserRequestDetail(userId).subscribe((res) => {
+    this.isLoading = true
+    console.log(this.isLoading);
 
-      this.userRequestDetails = res
-    })
-  }
+    this.appService.getUserRequestDetail(userId).subscribe({
+      next: (res) => {
+        this.userRequestDetails = res;
+        this.isLoading = false
+      },
+      error: (error) => {
+        this.isLoading = false
+      }
+    });
+    }
 }

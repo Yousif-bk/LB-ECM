@@ -10,6 +10,7 @@ import { UserRequetsDetailsComponent} from './user-requets-details/user-requets-
 import { ApprovalStatusPipe } from 'src/app/shared/helper/approval-status.pipe';
 import { AdminRequestDetailsComponent } from './admin-request-details/admin-request-details.component';
 import { SuperadminRequestDetailsComponent } from './superadmin-request-details/superadmin-request-details.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -27,6 +28,7 @@ import { SuperadminRequestDetailsComponent } from './superadmin-request-details/
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbTooltipModule,
     RouterModule.forChild(requestsRoutes)
   ]
 })

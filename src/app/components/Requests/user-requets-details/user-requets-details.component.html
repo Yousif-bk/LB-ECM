@@ -1,51 +1,64 @@
-<div class="content container-fluid">
+<div class="content">
   <div class="d-flex justify-content-center">
     <div class="col-lg-11">
-      <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
+      <h3 class="py-4">LB-ECM Engage<span class="text-danger">X</span></h3>
       <div class="card shadow-sm animated flipInX delay-02">
         <div class="card-header">
           <div class="d-flex justify-content-between">
             <div class="card-header-title display-5">{{userRequestDetails.customerName}}</div>
-            <div class="d-flex gap-3">
-              <button class="btn btn-primary" [routerLink]="['/create-request']">
-                Request data
-              </button>
-              <button class="btn btn-primary" [routerLink]="['/create-request']">
-                Launch camapaign
-              </button>
+            <div class="d-flex gap-2">
+
+              <a [routerLink]="['/user-big-data']"  *ngIf="userRequestDetails.approval.superAdminApprovalStatus=== 1" class="view-data"  placement="top" ngbTooltip="View Data">
+                <i class="bi bi-view-list"></i>
+              </a>
+              <a class="create-request" [routerLink]="['/create-request']"  placement="top" ngbTooltip="Request data">
+                <i class="bi bi-plus-circle"></i>
+              </a>
+              <a class="launch-campaign" [routerLink]="['/create-request']" placement="top" ngbTooltip="Launch campaign">
+                <i class="bi bi-chat-left"></i>
+              </a>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <div class="row">
+        <div *ngIf="isLoading">
+          <div class="wrapper">
+            <div class="spinner">
+              <div class="spinner-1"></div>
+              <div class="spinner-2"></div>
+              <div class="spinner-3"></div>
+            </div>
+          </div>
+        </div>
+          <div class="row" *ngIf="!isLoading">
             <div class="col-6">
               <ul class="list-unstyled list-py-2 text-dark mb-0">
                 <li class="pb-0"><span class="card-subtitle">Status</span></li>
                 <li>
                   <div>Admin Approval:</div>
                   <div class="status" [ngClass]="{
-                    'pending': userRequestDetails.approval.adminApprovalStatus === 1,
-                    'approved': userRequestDetails.approval.adminApprovalStatus === 2,
-                    'rejected': userRequestDetails.approval.adminApprovalStatus === 3
+                    'pending': userRequestDetails.approval.adminApprovalStatus === 0,
+                    'approved': userRequestDetails.approval.adminApprovalStatus === 1,
+                    'rejected': userRequestDetails.approval.adminApprovalStatus === 2
                   }">
-                  <i class="bi" [ngClass]="{
-                    'bi-hourglass-split': userRequestDetails.approval.adminApprovalStatus === 1,
-                    'bi-check2-all': userRequestDetails.approval.adminApprovalStatus === 2,
-                    'bi-x': userRequestDetails.approval.adminApprovalStatus === 3
-                  }"></i>  {{ userRequestDetails.approval.adminApprovalStatus | approvalStatus }}
+                    <i class="bi" [ngClass]="{
+                    'bi-hourglass-split': userRequestDetails.approval.adminApprovalStatus === 0,
+                    'bi-check2-all': userRequestDetails.approval.adminApprovalStatus === 1,
+                    'bi-x': userRequestDetails.approval.adminApprovalStatus === 2
+                  }"></i> {{ userRequestDetails.approval.adminApprovalStatus | approvalStatus }}
                   </div>
                 </li>
                 <li>
                   <div>Security Approval:</div>
                   <div class="status" [ngClass]="{
-                    'pending': userRequestDetails.approval.superAdminApprovalStatus === 1,
-                    'approved': userRequestDetails.approval.superAdminApprovalStatus === 2,
-                    'rejected': userRequestDetails.approval.superAdminApprovalStatus === 3
+                    'pending': userRequestDetails.approval.superAdminApprovalStatus === 0,
+                    'approved': userRequestDetails.approval.superAdminApprovalStatus === 1,
+                    'rejected': userRequestDetails.approval.superAdminApprovalStatus === 2
                   }">
                     <i class="bi" [ngClass]="{
-                    'bi-hourglass-split': userRequestDetails.approval.superAdminApprovalStatus === 1,
-                    'bi-check2-all': userRequestDetails.approval.superAdminApprovalStatus === 2,
-                    'bi-x': userRequestDetails.approval.superAdminApprovalStatus === 3
+                    'bi-hourglass-split': userRequestDetails.approval.superAdminApprovalStatus === 0,
+                    'bi-check2-all': userRequestDetails.approval.superAdminApprovalStatus === 1,
+                    'bi-x': userRequestDetails.approval.superAdminApprovalStatus === 2
                   }"></i> {{ userRequestDetails.approval.superAdminApprovalStatus | approvalStatus }}
                   </div>
                 </li>
@@ -83,3 +96,5 @@
     </div>
   </div>
 </div>
+
+

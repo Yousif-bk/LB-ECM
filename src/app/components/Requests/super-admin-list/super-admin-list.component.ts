@@ -25,7 +25,7 @@ export class SuperAdminListComponent {
     })
   }
 
-  approve(adminApprovalStatus: number, requestId: string) {
+  approve(adminApprovalStatus: number, requestId: string, userId: string) {
     const superAdminApproval = {
       superAdminApprovalStatus: adminApprovalStatus,
       requestId: requestId
@@ -34,18 +34,22 @@ export class SuperAdminListComponent {
       this.isRejected = false;
       this.isApproved = true
       this.modalService.dismissAll();
+      this.router.navigate(['/security-request-details/', userId])
     })
   }
 
-  reject(adminApprovalStatus: number, requestId: string) {
-    const superAdminApproval = {
-      superAdminApprovalStatus: adminApprovalStatus,
+  reject(securityApprovalStatus: number, requestId: string, userId: string) {
+    const securityApproval = {
+      superAdminApprovalStatus: securityApprovalStatus,
       requestId: requestId
     };
-    this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
+    console.log(securityApproval);
+
+    this.appService.superAdminApporvalRequest(securityApproval).subscribe(res => {
       this.isRejected = true;
       this.isApproved = false
       this.modalService.dismissAll();
+      this.router.navigate(['/security-request-details/', userId])
     })
   }
   adminRequestDetail(requestid: string) {
@@ -55,3 +59,4 @@ export class SuperAdminListComponent {
     this.modalService.open(content, { centered: true });
   }
 }
+

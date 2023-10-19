@@ -4,7 +4,7 @@
       <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
       <div class="card shadow-sm animated flipInX delay-02">
         <div class="card-header">
-                    <div [routerLink]="['/admin-requests-list']" class="card-header-title bold display-5"><i
+                    <div [routerLink]="['/security-requests-list']" class="card-header-title bold display-5"><i
                         style="background-color: rgb(243, 243, 243); cursor: pointer; border-radius: 8px; padding: 2px;"
                         class="bi bi-arrow-left-short"></i> Security Approval</div>
 
@@ -15,7 +15,7 @@
               <ul class="list-unstyled list-py-2 text-dark mb-0">
                 <li class="pb-0"><span class="card-subtitle">Status</span></li>
                 <li>
-                  <div>Security Approval:</div>
+                  <div>Admin Approval:</div>
                   <div class="status" [ngClass]="{
                     'pending': userRequestDetails.approval.adminApprovalStatus === 0,
                     'approved': userRequestDetails.approval.adminApprovalStatus === 1,
