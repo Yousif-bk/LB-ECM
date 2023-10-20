@@ -6,7 +6,7 @@
         <div class="card-header">
          <div class="d-flex justify-content-between">
           <div class="card-header-title display-5">
-        <div [routerLink]="['/user-request-details']" class="card-header-title bold display-5"><i
+        <div class="card-header-title bold display-5"><i *ngIf="hasRequest" [routerLink]="['/user-request-details']"
           style="background-color: rgb(243, 243, 243); cursor: pointer; border-radius: 8px; padding: 2px;"
             class="bi bi-arrow-left-short"></i><span class="p-3">Customer Request</span></div>
           </div>

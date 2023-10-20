@@ -32,7 +32,7 @@ export const AppRoutes = {
     },
   },
   BigData: {
-    main: "user-big-data"
+    main: "user-big-data/:id"
   }
 
 };

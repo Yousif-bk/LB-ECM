@@ -59,4 +59,8 @@ export class AppService {
   addUserLocation(userLocation: ILocation): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.Location.userLocation, userLocation);
   }
+
+  getBigdataDetails(id: any): Observable<any> {
+    return this.http.get(this.apiUrl + ApiRoutes.BigData.getBigDataDetails + id);
+  }
 }

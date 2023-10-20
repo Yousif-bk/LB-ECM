@@ -14,4 +14,7 @@ export const ApiRoutes = {
   Location: {
     userLocation: 'api/location/userLocation',
   },
+  BigData: {
+    getBigDataDetails: 'api/bigData/getBigdata/',
+  },
 };

@@ -1,6 +1,7 @@
 interface Location {
   id: string;
   userId: string;
+  bigDataId:number;
   emirate: string;
   area: string;
   address: string | null;

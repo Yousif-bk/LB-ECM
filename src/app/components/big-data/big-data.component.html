@@ -1,1 +1,33 @@
-<p>big-data works!</p>
+<div class="tabel-header py-3">
+  <div class="mb-2 mb-md-0">
+    <span class="display-5">
+      <i [routerLink]="['/user-request-details']" routerLinkActive="router-link-active"
+        style="background-color: rgb(243, 243, 243); cursor: pointer; border-radius: 8px; padding: 2px;"
+        class="bi bi-arrow-left-short"></i>
+      {{customerName}}
+    </span>
+  </div>
+  <div class="d-grid d-sm-flex gap-2">
+  </div>
+</div>
+
+<!-- Table -->
+<table class='table w-100 mb-4 main-table '>
+  <thead>
+    <th>Phone Number</th>
+    <th>Area</th>
+    <th>Emirate</th>
+  </thead>
+  <tbody>
+    <tr *ngIf="bigData.length === 0">
+      <td colspan="9">
+        <p class="d-flex justify-content-center align-items-center">No data found</p>
+      </td>
+    </tr>
+    <tr *ngFor="let item of bigData">
+      <td>{{ maskPhoneNumber(item.phoneNumber) }}</td>
+      <td>{{item.area}}</td>
+      <td>{{item.emirate}}</td>
+    </tr>
+  </tbody>
+</table>

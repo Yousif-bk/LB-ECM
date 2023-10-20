@@ -43,7 +43,6 @@ export class SuperAdminListComponent {
       superAdminApprovalStatus: securityApprovalStatus,
       requestId: requestId
     };
-    console.log(securityApproval);
 
     this.appService.superAdminApporvalRequest(securityApproval).subscribe(res => {
       this.isRejected = true;

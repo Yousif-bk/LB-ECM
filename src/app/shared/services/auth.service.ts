@@ -12,6 +12,7 @@ import { User } from '../model/User ';
   providedIn: 'root'
 })
 export class AuthService {
+
   private apiUrl = environment.apiUrl;
   isLoggedIn = new BehaviorSubject<boolean>(this.isTokenAvailable());
   userSubject = new BehaviorSubject<User | null>(null);
@@ -38,6 +39,7 @@ export class AuthService {
         const phoneNumber = res.phoneNumber;
         const eid = res.phoneNumber;
         const tradeLicense = res.tradeLicense;
+        const hasRequests = res.hasRequests;
         const user: User = {
           email: email,
           name: name,
@@ -45,12 +47,14 @@ export class AuthService {
           tradeLicense: tradeLicense,
           userId: userId,
           phoneNumber: phoneNumber,
+          hasRequests: hasRequests,
           role: userRole
         };
         const userJson = JSON.stringify(user);
         this.userSubject.next(user);
         localStorage.setItem(LocallyStoredItemsKeys.User, userJson);
-        this.redirectBasedOnRole(userRole);
+
+        this.redirectBasedOnRole(userRole, hasRequests);
       })
     );
   }
@@ -75,16 +79,20 @@ export class AuthService {
   getIsLoggedIn(): BehaviorSubject<boolean> {
     return this.isLoggedIn;
   }
-  private redirectBasedOnRole(userRole: string): void {
+  private redirectBasedOnRole(userRole: string, hasRequest: boolean): void {
     if (userRole === 'user') {
-      this.router.navigate([AppRoutes.Request.User.main]);
+      if (hasRequest) {
+        this.router.navigate([AppRoutes.Request.User.details]);
+      } else {
+        this.router.navigate([AppRoutes.Request.User.main]);
+      }
     } else if (userRole === 'admin') {
       this.router.navigate([AppRoutes.Request.Admin.main]);
     } else if (userRole === 'superadmin') {
       this.router.navigate([AppRoutes.Request.SuperAdmin.main]);
-    }
-    else {
+    } else {
       console.log('Unknown user role:', userRole);
     }
   }
+
 }

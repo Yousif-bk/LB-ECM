@@ -7,8 +7,7 @@
           <div class="d-flex justify-content-between">
             <div class="card-header-title display-5">{{userRequestDetails.customerName}}</div>
             <div class="d-flex gap-2">
-
-              <a [routerLink]="['/user-big-data']"  *ngIf="userRequestDetails.approval.superAdminApprovalStatus=== 1" class="view-data"  placement="top" ngbTooltip="View Data">
+              <a [routerLink]="['/user-big-data', userRequestDetails.user.location.bigDataId]"  *ngIf="userRequestDetails.approval.superAdminApprovalStatus=== 1" class="view-data"  placement="top" ngbTooltip="View Data">
                 <i class="bi bi-view-list"></i>
               </a>
               <a class="create-request" [routerLink]="['/create-request']"  placement="top" ngbTooltip="Request data">
