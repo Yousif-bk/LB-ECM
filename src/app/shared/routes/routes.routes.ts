@@ -1,3 +1,4 @@
+import { LaunchCampaignComponent } from './../../components/launch-campaign/launch-campaign.component';
 import { RequestsModule } from './../../components/Requests/requests.module';
 import { LandingComponent } from './../../components/home/landing/landing.component';
 import { Routes } from '@angular/router';
@@ -31,6 +32,11 @@ export const routes: Routes = [
     path: AppRoutes.BigData.main,
     canActivate: [AuthGuard],
     loadComponent: () => import('../../components/big-data/big-data.component').then(m => m.BigDataComponent)
+  },
+  {
+    path: AppRoutes.LaunchCampaign.main,
+    canActivate: [AuthGuard],
+    loadComponent: () => import('../../components/launch-campaign/launch-campaign.component').then(m => m.LaunchCampaignComponent)
   },
   { path: '**', component: PathNotFoundComponent },
 ]

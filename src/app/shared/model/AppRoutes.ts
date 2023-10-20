@@ -1,3 +1,4 @@
+import { LaunchCampaignComponent } from './../../components/launch-campaign/launch-campaign.component';
 export const AppRoutes = {
   Home: {
     main: "home",
@@ -33,6 +34,9 @@ export const AppRoutes = {
   },
   BigData: {
     main: "user-big-data/:id"
+  },
+  LaunchCampaign:{
+    main: "user-launch-campaign/:id",
   }
 
 };

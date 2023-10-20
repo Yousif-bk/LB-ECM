@@ -1,0 +1,85 @@
+<div class="content container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-9">
+      <h3 class="py-4">LB-ECM Engage<span class="text-danger">X</span></h3>
+      <div class="card shadow-sm animated flipInX delay-02">
+        <div class="card-header">
+          <div class="d-flex justify-content-between">
+            <div class="card-header-title display-5">
+              <div class="card-header-title bold display-5"><i [routerLink]="['/user-request-details']"
+                  style="background-color: rgb(243, 243, 243); cursor: pointer; border-radius: 8px; padding: 2px;"
+                  class="bi bi-arrow-left-short"></i><span class="p-3">Launch Campaign |
+                  {{userRequestDetails.customerName}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div *ngIf="uiState.isSuccess" class="alert alert-success" role="alert">
+            {{uiState.successMessage}}
+          </div>
+            <div *ngIf="uiState.errorAlert" class="alert alert-success" role="alert">
+              {{uiState.errorMessage}}
+            </div>
+          <div class="row">
+            <div class="col-6">
+              <ul class="list-unstyled list-py-2 text-dark mb-0 mb-4">
+                <li>
+                  <div class="property">Name:</div>
+                  <div class="value"><i class="bi bi-building"></i> : {{ userRequestDetails.customerName }}</div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="list-unstyled list-py-2 text-dark mb-0 mb-4">
+                <li>
+                  <div class="property">E-mail:</div>
+                  <div class="value"><i class="bi bi-envelope"></i> : {{ userRequestDetails.email }}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <form [formGroup]="launchCampaignFormGroup" (ngSubmit)="launchCampaign()">
+            <div class="row">
+              <div class="col-sm-12">
+                <label>Campaign Content</label>
+                <div class="mb-4">
+                  <textarea type="text" class="form-control" formControlName="campaignContent" readonly></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label>Select Phoane Number</label>
+                <div class="mb-4">
+                  <select type="text" class="form-control" formControlName="phoneNumber">
+                    <option *ngFor="let item of bigData" [value]="item.phoneNumber">{{ maskPhoneNumber(item.phoneNumber)
+                      }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label>Select Location</label>
+                <div class="mb-4 d-flex">
+                  <select class="form-control" formControlName="emirate" [style.marginRight.px]="5" style="width: 20%;">
+                    <option *ngFor="let emirate of bigData" [value]="emirate.emirate">{{ emirate.emirate }}</option>
+                  </select>
+                  <select class="form-control" formControlName="area" style="width: 80%;">
+                    <option *ngFor="let area of bigData" [value]="area.area">{{ area.area }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-3">
+                <button type="submit" [disabled]="uiState.isLoading" class="btn btn-primary">
+                  <div *ngIf="uiState.isLoading" class="spinner-grow spinner-grow-sm">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span *ngIf="!uiState.isLoading">Send</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

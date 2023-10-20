@@ -64,7 +64,7 @@ export class CreatesRequestComponent {
     const userJson = localStorage.getItem(LocallyStoredItemsKeys.User)
     if (userJson !== null) {
       const user = JSON.parse(userJson);
-      this.hasRequest = user.hasRequest,
+      this.hasRequest = user.hasRequests,
       this.createRequestForm.get('userId')?.setValue(user?.userId)
       this.locationtForm.get('userId')?.setValue(user?.userId)
       this.createRequestForm.get('mobile')?.setValue(user?.phoneNumber)

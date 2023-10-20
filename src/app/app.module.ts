@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptors } from './shared/helper/interceptors/JwtInterceptors';
-import { BigDataComponent } from './components/big-data/big-data.component';
 
 @NgModule({
   declarations: [

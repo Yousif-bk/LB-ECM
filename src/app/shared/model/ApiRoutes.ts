@@ -17,4 +17,7 @@ export const ApiRoutes = {
   BigData: {
     getBigDataDetails: 'api/bigData/getBigdata/',
   },
+  LaunchCampaign:{
+    sentMessage: 'api/user/launchCampaign'
+  }
 };
