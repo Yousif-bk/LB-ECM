@@ -7,6 +7,19 @@
 .request-details{
 
 }
+    .approved {
+      background-color: #19a58e;
+      padding: 5px;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .rejected {
+      background-color: rgb(163, 96, 96);
+      padding: 5px;
+      border-radius: 8px;
+      color: #fff;
+    }
 
 .request-details:hover{
   background-color: #f1f1f1;

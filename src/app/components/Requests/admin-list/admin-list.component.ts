@@ -15,34 +15,48 @@ export class AdminListComponent implements OnInit {
   isApproved: boolean = false;
   isRejected: boolean = false;
   requestlist: IRequest[] = [];
+  adminApprovalStatus: number
+
   constructor(private appService: AppService, private router: Router, private modalService: NgbModal) { }
   ngOnInit(): void {
     this.appService.getAdminRequest().subscribe(res => {
       this.requestlist = res as IRequest[];
+      this.checkRequestApproved(res[0].userId)
     })
   }
+  checkRequestApproved(userId: string) {
+    this.appService.getUserRequestDetail(userId).subscribe({
+      next: (res) => {
+        console.log(res.approval.adminApprovalStatus);
 
-  approve(adminApprovalStatus: number, requestId: string, userId: string) {
+        this.adminApprovalStatus = res.approval.adminApprovalStatus
+      },
+      error: () => { }
+    })
+  }
+  approve(adminApprovalStatus: number, items:any) {
     const adminApproval = {
       adminApprovalStatus: adminApprovalStatus,
-      requestId: requestId
+      requestId: items.requestId
     };
     this.appService.adminApporvalRequest(adminApproval).subscribe(res => {
       this.modalService.dismissAll();
-      this.router.navigate(['/admin-request-details/', userId])
+      this.router.navigate(['/admin-request-details/', items.userId])
       this.isApproved = true;
+      this.sentMessamge(items.mobile, items.customerName, true);
     })
   }
 
-  reject(adminApprovalStatus: number, requestId: string, userId: string) {
+  reject(adminApprovalStatus: number, items:any) {
     const adminApproval = {
       adminApprovalStatus: adminApprovalStatus,
-      requestId: requestId
+      requestId: items.requestId
     };
     this.appService.adminApporvalRequest(adminApproval).subscribe(res => {
       this.modalService.dismissAll();
-      this.router.navigate(['/admin-request-details/', userId])
+      this.router.navigate(['/admin-request-details/', items.userId])
       this.isRejected = true;
+      this.sentMessamge(items.mobile, items.customerName, false);
     })
   }
 
@@ -52,5 +66,22 @@ export class AdminListComponent implements OnInit {
 
   openVerticallyCentered(content:any) {
     this.modalService.open(content, { centered: true });
+  }
+
+  sentMessamge(mobile: string, customerName: string, isApproved: boolean) {
+
+    let sendMessage = { phoneNumber: mobile, campaignContent: '' };
+    if (isApproved) {
+      sendMessage.campaignContent = `${customerName} your request has been approved`;
+    } else {
+      sendMessage.campaignContent = `${customerName} your request has been rejected`;
+    }
+
+    this.appService.launchCampaign(sendMessage).subscribe({
+      next:(res) =>{
+        console.log(res);
+      },
+      error:() => {}
+    })
   }
 }

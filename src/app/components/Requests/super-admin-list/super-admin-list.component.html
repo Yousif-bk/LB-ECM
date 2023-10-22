@@ -50,12 +50,12 @@
           <div>{{item.campaignContent}}</div>
         </td>
         <td class="d-flex gap-3">
-          <span class="approved-icon" *ngIf="!isApproved" (click)="openVerticallyCentered(approveModel)"><i
-              *ngIf="!isRejected" style="color: white; cursor: pointer;" class="bi bi-check2-square p-3"></i></span>
-          <span class="rejected-icon" *ngIf="!isApproved" (click)="openVerticallyCentered(rejectModel)"><i
-              *ngIf="!isRejected" style="color: white; cursor: pointer;" class="bi bi-x-lg"></i></span>
-          <span *ngIf="isRejected" class="rejected"><i class="bi bi-x"></i>Rejected</span>
-          <span *ngIf="isApproved" class="approved"><i class="bi bi-check2-all"></i>Approved</span>
+          <span class="approved-icon" *ngIf="securityApprovalStatus === 0" (click)="openVerticallyCentered(approveModel)"><i
+            style="color: white; cursor: pointer;" class="bi bi-check2-square p-3"></i></span>
+          <span class="rejected-icon" *ngIf="securityApprovalStatus === 0" (click)="openVerticallyCentered(rejectModel)"><i
+               style="color: white; cursor: pointer;" class="bi bi-x-lg"></i></span>
+          <span *ngIf="securityApprovalStatus === 2" class="rejected"><i class="bi bi-x"></i>Rejected</span>
+          <span *ngIf="securityApprovalStatus === 1" class="approved"><i class="bi bi-check2-all"></i>Approved</span>
         </td>
 
         <ng-template #approveModel let-modal>
@@ -68,7 +68,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-success"
-              (click)="approve(1, item.requestId,  item.userId)">Approve</button>
+              (click)="approve(1,item)">Approve</button>
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
           </div>
         </ng-template>
@@ -83,7 +83,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger"
-              (click)="reject(2, item.requestId, item.userId)">Reject</button>
+              (click)="reject(2,item)">Reject</button>
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
           </div>
         </ng-template>

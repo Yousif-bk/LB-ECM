@@ -16,39 +16,50 @@ export class SuperAdminListComponent {
   requestlist: IRequest[] = [];
   isApproved: boolean = false;
   isRejected: boolean = false;
+  securityApprovalStatus:number
 
 
   constructor(private appService: AppService, private router: Router, private modalService: NgbModal) { }
   ngOnInit(): void {
     this.appService.getSuperAdminRequest().subscribe(res => {
       this.requestlist = res as IRequest[];
+      this.checkRequestApproved(res[0].userId)
     })
   }
 
-  approve(adminApprovalStatus: number, requestId: string, userId: string) {
+  checkRequestApproved(userId: string) {
+    this.appService.getUserRequestDetail(userId).subscribe({
+      next: (res) => {
+        this.securityApprovalStatus = res.approval.superAdminApprovalStatus
+      },
+      error: () => {}
+    })
+  }
+
+  approve(adminApprovalStatus: number, items: any) {
     const superAdminApproval = {
       superAdminApprovalStatus: adminApprovalStatus,
-      requestId: requestId
+      requestId: items.requestId
     };
     this.appService.superAdminApporvalRequest(superAdminApproval).subscribe(res => {
-      this.isRejected = false;
-      this.isApproved = true
       this.modalService.dismissAll();
-      this.router.navigate(['/security-request-details/', userId])
+      this.router.navigate(['/security-request-details/', items.userId])
+      this.sentMessamge(items.mobile, items.customerName, true);
     })
   }
 
-  reject(securityApprovalStatus: number, requestId: string, userId: string) {
+  reject(securityApprovalStatus: number, items: any) {
+
     const securityApproval = {
       superAdminApprovalStatus: securityApprovalStatus,
-      requestId: requestId
+      requestId: items.requestId
     };
 
+
     this.appService.superAdminApporvalRequest(securityApproval).subscribe(res => {
-      this.isRejected = true;
-      this.isApproved = false
       this.modalService.dismissAll();
-      this.router.navigate(['/security-request-details/', userId])
+      this.router.navigate(['/security-request-details/', items.userId])
+      this.sentMessamge(items.mobile, items.customerName, false);
     })
   }
   adminRequestDetail(requestid: string) {
@@ -56,6 +67,24 @@ export class SuperAdminListComponent {
   }
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
+  }
+
+
+  sentMessamge(mobile: string, customerName: string, isApproved: boolean) {
+
+    let sendMessage = { phoneNumber: mobile, campaignContent: '' };
+    if (isApproved) {
+      sendMessage.campaignContent = `${customerName} your request has been approved`;
+    } else {
+      sendMessage.campaignContent = `${customerName} your request has been rejected`;
+    }
+
+    this.appService.launchCampaign(sendMessage).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: () => { }
+    })
   }
 }
 

@@ -107,7 +107,7 @@
               <div class="col-sm-6">
                 <label>Authorised Person</label>
                 <div class="mb-4">
-                  <input type="text" class="form-control" formControlName="authorisedPerson" readonly>
+                  <input type="text" class="form-control" formControlName="authorisedPerson">
                   <div class="v-message"
                     *ngIf="(uiState.isSubmitting && createRequestForm.get('authorisedPerson')?.hasError('required')
                                                                                || createRequestForm.get('authorisedPerson')?.touched && createRequestForm.get('authorisedPerson')?.hasError('required'))">
