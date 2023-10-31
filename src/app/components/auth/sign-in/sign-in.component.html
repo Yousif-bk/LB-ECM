@@ -5,20 +5,20 @@
 
   <!-- Content -->
   <div class="container py-5 py-sm-7">
-    <a class="d-flex justify-content-center mb-5" href="index.html">
+    <!-- <a class="d-flex justify-content-center mb-5" href="index.html">
       <img class="zi-2" src="../../../../assets/eand.png" alt="Image Description" style="width: 15rem;">
-    </a>
+    </a> -->
 
     <div class="mx-auto" style="max-width: 30rem;">
       <!-- Card -->
-      <div class="card shadow card-lg mb-5">
+      <div class="card shadow well card-lg mb-5">
         <div class="card-body">
           <!-- Form -->
           <div class="text-center">
             <div *ngIf="uiState.isAlertVisible" class="alert alert-danger" role="alert">
               {{this.uiState.errorMessage}}
             </div>
-            <div class="mb-5">
+            <div class="mb-4">
               <h1 class="display-5">Sign in</h1>
               <p>Don't have an account yet? <a class="link" [routerLink]="'/auth/sign-up'">Sign up here</a></p>
             </div>
