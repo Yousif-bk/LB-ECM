@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LocallyStoredItemsKeys } from 'src/app/shared/model/LocallyStoredItemsKeys';
+import { LaunchCampaign } from 'src/app/shared/model/LaunchCampaign';
+import { BulkSMS } from 'src/app/shared/model/BulkSMS';
 
 @Component({
   selector: 'app-admin-list',
@@ -12,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AdminListComponent implements OnInit {
 
+  adminPhoneNumber: string
   isApproved: boolean = false;
   isRejected: boolean = false;
   requestlist: IRequest[] = [];
@@ -69,15 +73,23 @@ export class AdminListComponent implements OnInit {
   }
 
   sentMessamge(mobile: string, customerName: string, isApproved: boolean) {
+    const userJson = localStorage.getItem(LocallyStoredItemsKeys.User)
+    if (userJson !== null) {
+      const user = JSON.parse(userJson);
+      this.adminPhoneNumber = user.phoneNumber;
+    }
+    let sendMessage: BulkSMS = {
+      recipients: [this.adminPhoneNumber, mobile],
+      campaignContent: '',
+    }
 
-    let sendMessage = { phoneNumber: mobile, campaignContent: '' };
     if (isApproved) {
       sendMessage.campaignContent = `${customerName} your request has been approved`;
     } else {
       sendMessage.campaignContent = `${customerName} your request has been rejected`;
     }
 
-    this.appService.launchCampaign(sendMessage).subscribe({
+    this.appService.sendBulkSMS(sendMessage).subscribe({
       next:(res) =>{
         console.log(res);
       },

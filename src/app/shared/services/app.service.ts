@@ -8,6 +8,7 @@ import { AdminApproval } from '../model/AdminApproval';
 import { SuperAdminApproval } from '../model/SuperAdminApproval';
 import { ILocation } from '../model/ILocation';
 import { LaunchCampaign } from '../model/LaunchCampaign';
+import { BulkSMS } from '../model/BulkSMS';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,8 @@ export class AppService {
 
   launchCampaign(launchCampaign: LaunchCampaign): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.LaunchCampaign.sentMessage, launchCampaign);
+  }
+  sendBulkSMS(bulksms: BulkSMS): Observable<any> {
+    return this.http.post(this.apiUrl + ApiRoutes.LaunchCampaign.sendBulkSMS, bulksms);
   }
 }

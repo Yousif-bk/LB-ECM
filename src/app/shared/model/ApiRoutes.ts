@@ -18,6 +18,7 @@ export const ApiRoutes = {
     getBigDataDetails: 'api/bigData/getBigdata/',
   },
   LaunchCampaign:{
-    sentMessage: 'api/user/launchCampaign'
+    sentMessage: 'api/user/launchCampaign',
+    sendBulkSMS: 'api/user/bulksms'
   }
 };
