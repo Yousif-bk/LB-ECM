@@ -1,12 +1,12 @@
 <div class="content container-fluid">
   <div class="d-flex justify-content-center">
     <div class="col-lg-11">
-      <h3 class="py-4">Engage<span class="text-danger">X</span></h3>
-      <div class="card shadow-sm animated flipInX delay-02">
+      <h3 class="py-4">LB-ECM Engage<span class="text-danger">X</span></h3>
+      <div class="card shadow animated flipInX delay-02">
         <div class="card-header">
                     <div [routerLink]="['/security-requests-list']" class="card-header-title bold display-5"><i
                         style="background-color: rgb(243, 243, 243); cursor: pointer; border-radius: 8px; padding: 2px;"
-                        class="bi bi-arrow-left-short"></i> Security Approval</div>
+                        class="bi bi-arrow-left-short"></i> e& Security Approval</div>
 
         </div>
         <div class="card-body">
@@ -15,7 +15,7 @@
               <ul class="list-unstyled list-py-2 text-dark mb-0">
                 <li class="pb-0"><span class="card-subtitle">Status</span></li>
                 <li>
-                  <div>Admin Approval:</div>
+                  <div class="fw-bold">Enterprise Admin Approval:</div>
                   <div class="status" [ngClass]="{
                     'pending': userRequestDetails.approval.adminApprovalStatus === 0,
                     'approved': userRequestDetails.approval.adminApprovalStatus === 1,
@@ -30,7 +30,7 @@
                   </div>
                 </li>
                 <li>
-                  <div>Security Approval:</div>
+                  <div class="fw-bold">e& Security Approval:</div>
                   <div class="status" [ngClass]="{
                     'pending': userRequestDetails.approval.superAdminApprovalStatus === 0,
                     'approved': userRequestDetails.approval.superAdminApprovalStatus === 1,

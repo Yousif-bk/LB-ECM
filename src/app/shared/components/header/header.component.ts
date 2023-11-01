@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     if (userJson !== null) {
       const user = JSON.parse(userJson);
       this.email = user.email
-      this.fullName = user.fullName
+      this.fullName = user.name
     }
   }
   // Listen for window size changes

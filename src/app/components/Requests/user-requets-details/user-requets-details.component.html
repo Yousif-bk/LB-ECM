@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center">
     <div class="col-lg-11">
       <h3 class="py-4">LB-ECM Engage<span class="text-danger">X</span></h3>
-      <div class="card shadow-sm animated flipInX delay-02">
+      <div class="card shadow animated flipInX delay-02">
         <div class="card-header">
           <div class="d-flex justify-content-between">
             <div class="card-header-title display-5">{{userRequestDetails.customerName}}</div>
@@ -34,7 +34,7 @@
               <ul class="list-unstyled list-py-2 text-dark mb-0">
                 <li class="pb-0"><span class="card-subtitle">Status</span></li>
                 <li>
-                  <div>Admin Approval:</div>
+                  <div>Enterprise Admin Approval:</div>
                   <div class="status" [ngClass]="{
                     'pending': userRequestDetails.approval.adminApprovalStatus === 0,
                     'approved': userRequestDetails.approval.adminApprovalStatus === 1,
@@ -48,7 +48,7 @@
                   </div>
                 </li>
                 <li>
-                  <div>Security Approval:</div>
+                  <div>e& Security Approval:</div>
                   <div class="status" [ngClass]="{
                     'pending': userRequestDetails.approval.superAdminApprovalStatus === 0,
                     'approved': userRequestDetails.approval.superAdminApprovalStatus === 1,

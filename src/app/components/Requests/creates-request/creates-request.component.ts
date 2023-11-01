@@ -25,12 +25,9 @@ export class CreatesRequestComponent {
   areas = [
     { value: 'Dubai Mrina', label: 'Dubai Marina', emirate: 'DXB' },
     { value: 'Business bay', label: 'Business Bay', emirate: 'DXB' },
-    { value: 'Deira', label: 'Deira', emirate: 'DXB' },
     { value: 'YasIsland', label: 'Yas Island', emirate: 'AUH' },
-    { value: 'Al Reef', label: 'Al Reef', emirate: 'AUH' },
-    { value: 'Al Mushrif', label: 'Al Mushrif', emirate: 'AUH' },
+    { value: 'Al Reem', label: 'Al Reem', emirate: 'AUH' },
     { value: 'Al Falaj', label: 'Al Falaj', emirate: 'SHJ' },
-    { value: 'Abu Shagara', label: 'Abu Shagara ', emirate: 'SHJ' },
     { value: 'Alnahd', label: 'Alnahda', emirate: 'SHJ' }
   ];
 

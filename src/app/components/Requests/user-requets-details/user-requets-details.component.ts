@@ -31,6 +31,7 @@ export class UserRequetsDetailsComponent implements OnInit {
 
     this.appService.getUserRequestDetail(userId).subscribe({
       next: (res) => {
+
         this.userRequestDetails = res;
         this.isLoading = false
       },

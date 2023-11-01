@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptors } from './shared/helper/interceptors/JwtInterceptors';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { JwtInterceptors } from './shared/helper/interceptors/JwtInterceptors';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptors, multi: true },],
   bootstrap: [AppComponent]

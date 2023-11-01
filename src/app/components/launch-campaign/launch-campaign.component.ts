@@ -82,9 +82,9 @@ export class LaunchCampaignComponent implements OnInit {
   }
 
   maskPhoneNumber(phoneNumber: string): string {
-    if (phoneNumber && phoneNumber.length >= 2) {
-      const lastFourDigits = phoneNumber.slice(-2);
-      const maskedDigits = '*'.repeat(phoneNumber.length - 2);
+    if (phoneNumber && phoneNumber.length >= 1) {
+      const lastFourDigits = phoneNumber.slice(-1);
+      const maskedDigits = '*'.repeat(phoneNumber.length - 1);
       return maskedDigits + lastFourDigits;
     } else {
       return phoneNumber;
