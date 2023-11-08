@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { LocallyStoredItemsKeys } from 'src/app/shared/model/LocallyStoredItemsKeys';
 import { Router } from '@angular/router';
 import { AppRoutes } from 'src/app/shared/model/AppRoutes';
+import { LaunchCampaign } from 'src/app/shared/model/LaunchCampaign';
 
 @Component({
   selector: 'app-creates-request',
@@ -21,6 +22,9 @@ export class CreatesRequestComponent {
     { value: 'DXB', label: 'DXB' },
     { value: 'AUH', label: 'AUH' },
     { value: 'SHJ', label: 'SHJ' }
+  ]
+  senderAddresses = [
+    { value: 'engageX', label: 'engageX' },
   ]
   areas = [
     { value: 'Dubai Mrina', label: 'Dubai Marina', emirate: 'DXB' },
@@ -76,6 +80,7 @@ export class CreatesRequestComponent {
     this.createRequestForm = this.formBuilder.group({
       userId: ['', Validators.required],
       customerName: [null, Validators.required],
+      senderAddress: [null, Validators.required],
       mobile: [null, Validators.required],
       eid: [null, Validators.required],
       tradeLicense: [null, Validators.required],
@@ -118,6 +123,7 @@ export class CreatesRequestComponent {
           this.uiState.isLoading = false, this.uiState.isSuccess = true, setTimeout(() => {
             this.uiState.isSuccess = false
           }, 2000);
+          this.getAdminDetail()
           this.router.navigate([AppRoutes.Request.User.details])
         },
         error: (error) => {
@@ -153,5 +159,28 @@ export class CreatesRequestComponent {
     })
   }
 
+
+  getAdminDetail(){
+    this.appService.getUser("admin").subscribe({
+      next: (res) => {
+        this.sentMessamge(res.phoneNumber)
+      },
+      error: () => { }
+    })
+  }
+
+  sentMessamge(mobile: string) {
+    let sendMessage: LaunchCampaign = {
+      phoneNumber: mobile,
+      senderAddress : this.createRequestForm.get('senderAddress')?.value,
+      campaignContent: 'You have pending request please log in and check',
+    }
+
+    this.appService.launchCampaign(sendMessage).subscribe({
+      next: (res) => {
+      },
+      error: () => { }
+    })
+  }
 
 }

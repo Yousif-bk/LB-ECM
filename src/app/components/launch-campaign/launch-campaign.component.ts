@@ -48,6 +48,7 @@ export class LaunchCampaignComponent implements OnInit {
     this.launchCampaignFormGroup = this.formBuilder.group({
       campaignContent: [null, Validators.required],
       phoneNumber: [null, Validators.required],
+      senderAddress: ['engageX'],
     })
   }
 

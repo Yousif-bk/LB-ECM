@@ -40,7 +40,7 @@ export class AuthService {
         const name = res.name;
         const userId = res.userId;
         const phoneNumber = res.phoneNumber;
-        const eid = res.phoneNumber;
+        const eid = res.eid;
         const tradeLicense = res.tradeLicense;
         const hasRequests = res.hasRequests;
         const user: User = {

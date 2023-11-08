@@ -10,6 +10,10 @@ export const ApiRoutes = {
     adminApporvalRequest: 'api/approval/admin',
     superAdminApporvalRequest: 'api/approval/superAdmin',
     getUserRequestDetail: 'api/request/userRequestDetail/',
+    getUser: 'api/request/userRequestDetail/',
+  },
+  User:{
+    getUser: 'api/user/getuser/'
   },
   Location: {
     userLocation: 'api/location/userLocation',

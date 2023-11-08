@@ -85,9 +85,9 @@ export class SuperAdminListComponent {
       campaignContent: '',
     }
     if (isApproved) {
-      sendMessage.campaignContent = `${customerName} your request has been approved`;
+      sendMessage.campaignContent = `${customerName} your request has been approved by security`;
     } else {
-      sendMessage.campaignContent = `${customerName} your request has been rejected`;
+      sendMessage.campaignContent = `${customerName} your request has been rejected by security`;
     }
 
     this.appService.sendBulkSMS(sendMessage).subscribe({

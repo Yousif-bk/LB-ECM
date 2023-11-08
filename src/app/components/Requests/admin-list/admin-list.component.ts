@@ -84,14 +84,13 @@ export class AdminListComponent implements OnInit {
     }
 
     if (isApproved) {
-      sendMessage.campaignContent = `${customerName} your request has been approved`;
+      sendMessage.campaignContent = `${customerName} your request has been approved by admin`;
     } else {
-      sendMessage.campaignContent = `${customerName} your request has been rejected`;
+      sendMessage.campaignContent = `${customerName} your request has been rejected by admin`;
     }
 
     this.appService.sendBulkSMS(sendMessage).subscribe({
       next:(res) =>{
-        console.log(res);
       },
       error:() => {}
     })

@@ -52,7 +52,7 @@
                 <label>Select Phoane Number</label>
                 <div class="mb-4">
                   <select type="text" class="form-control" formControlName="phoneNumber">
-                    <option *ngFor="let item of bigData" [value]="item.phoneNumber">{{ maskPhoneNumber(item.phoneNumber)
+                    <option *ngFor="let item of bigData" [value]="item.phoneNumber">{{ item.phoneNumber
                       }}</option>
                   </select>
                 </div>

@@ -72,4 +72,8 @@ export class AppService {
   sendBulkSMS(bulksms: BulkSMS): Observable<any> {
     return this.http.post(this.apiUrl + ApiRoutes.LaunchCampaign.sendBulkSMS, bulksms);
   }
+
+  getUser(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}api/getuser/${username}`);
+  }
 }

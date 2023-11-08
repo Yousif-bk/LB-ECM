@@ -93,7 +93,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <label>Trade License</label>
                 <div class="mb-4">
                   <input type="text" class="form-control" formControlName="tradeLicense" readonly>
@@ -115,6 +115,21 @@
                   </div>
                 </div>
               </div>
+                  <div class="col-sm-6">
+                    <label>Select Sender Address</label>
+                    <div class="mb-4">
+                      <select class="form-control" formControlName="senderAddress">
+                        <option value="" disabled>Select Sender Address</option>
+                        <option *ngFor="let senderaddress of senderAddresses" [value]="senderaddress.value">{{ senderaddress.label }}
+                        </option>
+                      </select>
+                      <div class="v-message"
+                        *ngIf="(uiState.isSubmitting && createRequestForm.get('senderAddress')?.hasError('required')
+                           || createRequestForm.get('senderAddress')?.touched && createRequestForm.get('senderAddress')?.hasError('required'))">
+                        <span> Sender Address is <strong>required</strong></span>
+                      </div>
+                    </div>
+                  </div>
               <div class="col-sm-12">
                 <label>Campaign Content</label>
                 <div class="mb-4">
