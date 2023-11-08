@@ -91,8 +91,35 @@ export class AdminListComponent implements OnInit {
 
     this.appService.sendBulkSMS(sendMessage).subscribe({
       next:(res) =>{
+        this.getSeccurtyDetails();
       },
       error:() => {}
+    })
+  }
+
+
+  getSeccurtyDetails() {
+    this.appService.getUser("security").subscribe({
+      next: (res) => {
+        this.launchCampaign(res.phoneNumber)
+      },
+      error: () => {
+      }
+    })
+  }
+
+  launchCampaign(mobile: string) {
+    let sendMessage: LaunchCampaign = {
+      phoneNumber: mobile,
+      senderAddress: 'engageX',
+      campaignContent: 'You have pending request please log in and check',
+    }
+    this.appService.launchCampaign(sendMessage).subscribe({
+      next: (res) => {
+        console.log(res, "test message");
+
+      },
+      error: () => { }
     })
   }
 }
