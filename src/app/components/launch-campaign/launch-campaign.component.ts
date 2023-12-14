@@ -99,7 +99,7 @@ export class LaunchCampaignComponent implements OnInit {
   launchCampaign() {
     this.uiState.isLoading = true;
       let sendBulkMessage: BulkSMS = {
-        recipients: ['971554573936', '971558625053'],
+        recipients: this.recipients,
         campaignContent: this.launchCampaignFormGroup.get('campaignContent')?.value,
       }
       this.appService.sendBulkSMS(sendBulkMessage).subscribe({
