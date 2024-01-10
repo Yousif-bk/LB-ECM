@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from 'src/app/shared/model/AppRoutes';
 import { BulkSMS } from 'src/app/shared/model/BulkSMS';
 import { IRequest } from 'src/app/shared/model/IRequest';
+import { LaunchCampaign } from 'src/app/shared/model/LaunchCampaign';
 import { LocallyStoredItemsKeys } from 'src/app/shared/model/LocallyStoredItemsKeys';
 import { AppService } from 'src/app/shared/services/app.service';
 
@@ -92,6 +93,33 @@ export class SuperAdminListComponent {
 
     this.appService.sendBulkSMS(sendMessage).subscribe({
       next: (res) => {
+        this.getAdminDetails();
+      },
+      error: () => { }
+    })
+  }
+
+  getAdminDetails() {
+    this.appService.getUser("admin").subscribe({
+      next: (res) => {
+        console.log(res.phoneNumber);
+
+        this.launchCampaign(res.phoneNumber)
+      },
+      error: () => {
+      }
+    })
+  }
+
+  launchCampaign(mobile: string) {
+    let sendMessage: LaunchCampaign = {
+      phoneNumber: mobile,
+      senderAddress: 'engageX',
+      campaignContent: 'The request has been approved by security',
+    }
+    this.appService.launchCampaign(sendMessage).subscribe({
+      next: (res) => {
+        console.log(res, "test message");
       },
       error: () => { }
     })
