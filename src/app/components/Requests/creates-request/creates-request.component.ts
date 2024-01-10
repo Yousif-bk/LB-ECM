@@ -27,7 +27,7 @@ export class CreatesRequestComponent {
     { value: 'engageX', label: 'engageX' },
   ]
   areas = [
-    { value: 'Dubai Mrina', label: 'Dubai Marina', emirate: 'DXB' },
+    { value: 'Dubai Marina', label: 'Dubai Marina', emirate: 'DXB' },
     { value: 'Business bay', label: 'Business Bay', emirate: 'DXB' },
     { value: 'YasIsland', label: 'Yas Island', emirate: 'AUH' },
     { value: 'Al Reem', label: 'Al Reem', emirate: 'AUH' },
