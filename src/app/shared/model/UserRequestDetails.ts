@@ -50,4 +50,5 @@ export interface UserRequestDetails {
   campaignContent: string;
   approval: Approval;
   user: User;
+  senderId:string
 }
