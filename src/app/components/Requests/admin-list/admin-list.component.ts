@@ -111,7 +111,7 @@ export class AdminListComponent implements OnInit {
   launchCampaign(mobile: string) {
     let sendMessage: LaunchCampaign = {
       phoneNumber: mobile,
-      senderAddress: 'engageX',
+      senderId: 'engageX',
       campaignContent: 'You have pending request please log in and check',
     }
     this.appService.launchCampaign(sendMessage).subscribe({

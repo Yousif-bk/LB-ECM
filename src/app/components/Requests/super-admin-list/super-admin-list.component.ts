@@ -114,7 +114,7 @@ export class SuperAdminListComponent {
   launchCampaign(mobile: string) {
     let sendMessage: LaunchCampaign = {
       phoneNumber: mobile,
-      senderAddress: 'engageX',
+      senderId: 'engageX',
       campaignContent: 'The request has been approved by security',
     }
     this.appService.launchCampaign(sendMessage).subscribe({

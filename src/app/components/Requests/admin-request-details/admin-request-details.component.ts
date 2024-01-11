@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdminRequestDetailsComponent implements OnInit {
 
   userRequestDetails: UserRequestDetails
+  senderId: any
 
   constructor(private appService: AppService, private router: Router){}
 

@@ -23,7 +23,7 @@ export class CreatesRequestComponent {
     { value: 'AUH', label: 'AUH' },
     { value: 'SHJ', label: 'SHJ' }
   ]
-  senderAddresses = [
+  senderIds = [
     { value: 'engageX', label: 'engageX' },
   ]
   areas = [
@@ -80,7 +80,7 @@ export class CreatesRequestComponent {
     this.createRequestForm = this.formBuilder.group({
       userId: ['', Validators.required],
       customerName: [null, Validators.required],
-      senderAddress: [null, Validators.required],
+      senderId: [null, Validators.required],
       mobile: [null, Validators.required],
       eid: [null, Validators.required],
       tradeLicense: [null, Validators.required],
@@ -116,6 +116,7 @@ export class CreatesRequestComponent {
       this.uiState.isLoading = false
       return
     }
+
     this.appService.createRequest(this.createRequestForm.value).subscribe(
       {
         next: (res) => {
@@ -124,6 +125,7 @@ export class CreatesRequestComponent {
             this.uiState.isSuccess = false
           }, 2000);
           this.getAdminDetail()
+          localStorage.setItem(LocallyStoredItemsKeys.SenderId, this.createRequestForm.get("senderAddress")?.value)
           this.router.navigate([AppRoutes.Request.User.details])
         },
         error: (error) => {
@@ -172,7 +174,7 @@ export class CreatesRequestComponent {
   sentMessamge(mobile: string) {
     let sendMessage: LaunchCampaign = {
       phoneNumber: mobile,
-      senderAddress : this.createRequestForm.get('senderAddress')?.value,
+      senderId: this.createRequestForm.get('senderId')?.value,
       campaignContent: 'You have pending request please log in and check',
     }
 
