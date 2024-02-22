@@ -125,7 +125,6 @@ export class CreatesRequestComponent {
             this.uiState.isSuccess = false
           }, 2000);
           this.getAdminDetail()
-          localStorage.setItem(LocallyStoredItemsKeys.SenderId, this.createRequestForm.get("senderAddress")?.value)
           this.router.navigate([AppRoutes.Request.User.details])
         },
         error: (error) => {
